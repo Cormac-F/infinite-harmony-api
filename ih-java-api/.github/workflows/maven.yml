@@ -3,7 +3,11 @@ name: Java CI with Maven
 
 on:
   pull_request:
-    branches: [ ready-for-sign-off ]
+    types: [opened, reopened]
+  push:
+    branches:
+      - 'main'
+      - 'ready-for-sign-off'
 
 jobs:
   build:
