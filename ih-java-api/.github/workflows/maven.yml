@@ -6,9 +6,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "ready-for-sign-off" ]
+    branches: [ ready-for-sign-off ]
   pull_request:
-    branches: [ "ready-for-sign-off" ]
+    branches: [ ready-for-sign-off ]
 
 jobs:
   build:
