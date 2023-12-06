@@ -19,7 +19,7 @@ public class JobController {
     private JobService jobService = new JobService();
 
     @GET
-    @Path("/all-jobs")
+    @Path("/job-roles")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllJobs() {
         try {
