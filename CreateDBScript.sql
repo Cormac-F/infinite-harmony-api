@@ -56,7 +56,7 @@ CREATE TABLE JobRole (
   bandID INT NOT NULL,
   familyID INT NOT NULL,
   specSummary VARCHAR(500) NOT NULL,
-  sharepointLink VARCHAR(500),
+  sharepointLink VARCHAR(1000),
   FOREIGN KEY (bandID) REFERENCES Band(bandID),
   FOREIGN KEY (familyID) REFERENCES JobFamily(familyID)
 );
@@ -93,7 +93,7 @@ CREATE TABLE `Role`(
 
 CREATE TABLE `User`(
 	Username VARCHAR(64) PRIMARY KEY NOT NULL,
-    Password VARCHAR(64) NOT NULL,
+    `Password` VARCHAR(64) NOT NULL,
     RoleID TINYINT NOT NULL, 
     FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
     );
