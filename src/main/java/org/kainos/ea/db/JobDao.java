@@ -18,19 +18,14 @@ public class JobDao {
 
         Statement st = c.createStatement();
 
-        ResultSet rs = st.executeQuery("SELECT roleID, roleName, bandID, familyID," +
-                "specSummary, sharepointLink FROM JobRole");
+        ResultSet rs = st.executeQuery("SELECT roleID, roleName FROM JobRole");
 
         List<Job> jobList = new ArrayList<>();
 
         while (rs.next()) {
             Job job = new Job(
                     rs.getInt("roleID"),
-                    rs.getString("roleName"),
-                    rs.getInt("bandID"),
-                    rs.getInt("familyID"),
-                    rs.getString("specSummary"),
-                    rs.getString("sharepointLink")
+                    rs.getString("roleName")
             );
             jobList.add(job);
         }
