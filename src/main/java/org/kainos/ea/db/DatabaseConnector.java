@@ -35,8 +35,7 @@ public class DatabaseConnector {
                     host + "/" + name +
                     "?useSSL=false", user, password);
             return connection;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
         return null;

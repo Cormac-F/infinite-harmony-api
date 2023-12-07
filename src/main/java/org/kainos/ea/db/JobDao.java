@@ -14,7 +14,7 @@ public class JobDao {
     DatabaseConnector databaseConnector = new DatabaseConnector();
 
     public List<Job> getAllJobs() throws SQLException {
-        Connection c = databaseConnector.getConnection();
+        Connection c = DatabaseConnector.getConnection();
 
         Statement st = c.createStatement();
 
