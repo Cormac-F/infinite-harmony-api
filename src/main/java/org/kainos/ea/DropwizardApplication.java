@@ -19,7 +19,7 @@ public class DropwizardApplication extends Application<DropwizardConfiguration> 
 
     @Override
     public void initialize(final Bootstrap<DropwizardConfiguration> bootstrap) {
-        bootstrap.addBundle(new SwaggerBundle<DropwizardConfiguration>(){
+        bootstrap.addBundle(new SwaggerBundle<DropwizardConfiguration>() {
             @Override
             protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(DropwizardConfiguration configuration) {
                 return configuration.getSwagger();
