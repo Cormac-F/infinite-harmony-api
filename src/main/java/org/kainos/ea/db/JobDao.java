@@ -18,8 +18,8 @@ public class JobDao {
 
         Statement st = c.createStatement();
 
-        ResultSet rs = st.executeQuery("SELECT roleID, roleName, bandID, familyID," +
-                "specSummary, sharepointLink FROM JobRole");
+        ResultSet rs = st.executeQuery("SELECT JobRole.roleID, JobRole.roleName, Band.bandName FROM JobRole" +
+                " INNER JOIN Band on JobRole.bandID = Band.bandID;");
 
         List<Job> jobList = new ArrayList<>();
 
@@ -27,10 +27,7 @@ public class JobDao {
             Job job = new Job(
                     rs.getInt("roleID"),
                     rs.getString("roleName"),
-                    rs.getInt("bandID"),
-                    rs.getInt("familyID"),
-                    rs.getString("specSummary"),
-                    rs.getString("sharepointLink")
+                    rs.getString("bandName")
             );
             jobList.add(job);
         }
