@@ -1,10 +1,6 @@
 name: Java CI with Maven
 
-on:
-  push:
-    branches: [ main, ready-for-signoff ]
-  pull_request:
-    branches: [ main, ready-for-signoff ]
+on: [pull_request]
 
 jobs:
   build:
