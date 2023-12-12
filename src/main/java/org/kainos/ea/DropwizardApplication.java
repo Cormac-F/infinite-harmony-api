@@ -5,7 +5,6 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
-import org.kainos.ea.api.JobService;
 import org.kainos.ea.resources.JobController;
 
 public class DropwizardApplication extends Application<DropwizardConfiguration> {
@@ -21,7 +20,7 @@ public class DropwizardApplication extends Application<DropwizardConfiguration> 
 
     @Override
     public void initialize(final Bootstrap<DropwizardConfiguration> bootstrap) {
-        bootstrap.addBundle(new SwaggerBundle<DropwizardConfiguration>(){
+        bootstrap.addBundle(new SwaggerBundle<DropwizardConfiguration>() {
             @Override
             protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(DropwizardConfiguration configuration) {
                 return configuration.getSwagger();
