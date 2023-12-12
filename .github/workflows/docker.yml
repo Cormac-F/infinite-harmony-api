@@ -1,10 +1,6 @@
 name: Docker Image CI
 
-on:
-  push:
-    branches:
-      - main
-      - ready-for-sign-off
+on: [pull_request]
 
 jobs:
 
