@@ -24,17 +24,16 @@ public class JobController {
     public Response getJobSpecById(@PathParam("id") int id) {
         try {
             return Response.ok(jobService.getJobSpecById(id)).build();
-        }
-        catch (FailedToGetJobSpecException e) {
+
+        } catch (FailedToGetJobSpecException e) {
             System.err.println(e.getMessage());
 
             return Response.serverError().build();
-        }
-        catch (JobSpecDoesNotExistException e) {
+
+        } catch (JobSpecDoesNotExistException e) {
             System.err.println(e.getMessage());
 
             return Response.status(Response.Status.BAD_REQUEST).build();
-
         }
     }
 }

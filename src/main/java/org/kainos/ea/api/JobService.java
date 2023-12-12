@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 
 public class JobService {
-    JobDao jobDao = new JobDao();
+    private JobDao jobDao = new JobDao();
 
     public Job getJobSpecById(int id) throws FailedToGetJobSpecException, JobSpecDoesNotExistException {
         try {
@@ -19,9 +19,7 @@ public class JobService {
             }
 
             return job;
-        }
-
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
 
             throw new FailedToGetJobSpecException();
