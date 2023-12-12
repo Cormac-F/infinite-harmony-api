@@ -151,10 +151,12 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.3.1</version>
                 <configuration>
-                    <source>7</source>
-                    <target>7</target>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <configLocation>checkstyle.xml</configLocation>
+                    <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
                 </configuration>
             </plugin>
         </plugins>
