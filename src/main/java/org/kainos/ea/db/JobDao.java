@@ -10,11 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JobDao {
-    private static Connection conn;
     DatabaseConnector databaseConnector = new DatabaseConnector();
 
     public List<Job> getAllJobs() throws SQLException {
-        Connection c = DatabaseConnector.getConnection();
+        Connection c = databaseConnector.getConnection();
 
         Statement st = c.createStatement();
 
