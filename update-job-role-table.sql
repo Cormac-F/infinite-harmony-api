@@ -1,3 +1,0 @@
-ALTER TABLE JobRole
-ADD COLUMN specSummary VARCHAR(500),
-ADD COLUMN sharepointLink VARCHAR(1000);
