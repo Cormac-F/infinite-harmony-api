@@ -1,0 +1,52 @@
+package service;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.kainos.ea.api.JobService;
+import org.kainos.ea.cli.Job;
+import org.kainos.ea.client.FailedToGetAllJobsException;
+
+import org.kainos.ea.db.JobDao;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+import org.mockito.junit.jupiter.MockitoExtension;
+
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+class JobServiceTest {
+
+    @Mock
+    private JobDao jobDao;
+
+    @InjectMocks
+    private JobService jobService;
+
+    /*
+    Test 1
+
+    Write a unit test for the getJobs method
+
+    When the dao returns a list of employees
+
+    Expect the list of employees to be returned
+
+    This should pass without code changes
+
+     */
+
+    @Test
+    void getAllJobs_shouldReturnListOfJobs() throws SQLException, FailedToGetAllJobsException {
+        List<Job> jobs = new ArrayList<>();
+        when(jobDao.getAllJobs()).thenReturn(jobs);
+
+        assertEquals(jobs, jobService.getAllJobs());
+    }
+}
+
