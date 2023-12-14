@@ -12,7 +12,8 @@ public class ResponsibilityService {
 
     private ResponsibilityDao responsibilityDao = new ResponsibilityDao();
 
-    public List<Responsibility> getRoleResponsibilityById(int id) throws FailedToGetRoleResponsibilityException, RoleResponsibilityDoesNotExistException {
+    public List<Responsibility> getRoleResponsibilityById(int id) throws FailedToGetRoleResponsibilityException,
+            RoleResponsibilityDoesNotExistException {
         List<Responsibility> responsibilitiesList = null;
         try {
             responsibilitiesList = responsibilityDao.getRoleResponsibilityById(id);
