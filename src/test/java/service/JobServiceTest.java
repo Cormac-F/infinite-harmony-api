@@ -29,7 +29,7 @@ class JobServiceTest {
     private JobService jobService;
 
     @Test
-    void ShouldReturnListOfAllJobs() throws SQLException, FailedToGetAllJobsException {
+    void shouldReturnListOfAllJobs() throws SQLException, FailedToGetAllJobsException {
         List<Job> jobs = new ArrayList<>();
         when(jobDao.getAllJobs()).thenReturn(jobs);
 
