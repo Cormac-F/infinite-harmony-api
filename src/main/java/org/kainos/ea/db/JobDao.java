@@ -17,9 +17,11 @@ public class JobDao {
 
         Statement st = c.createStatement();
 
-        ResultSet rs = st.executeQuery("SELECT roleID, roleName, Capability.capabilityName from JobRole\n"
-                + "INNER JOIN JobFamily on JobRole.familyID = JobFamily.familyID\n"
-                + "INNER JOIN Capability on JobFamily.capabilityID = Capability.capabilityID");
+        ResultSet rs = st.executeQuery("SELECT roleID, roleName, Capability.capabilityName \n"
+                + "FROM JobRole\n"
+                + "INNER JOIN JobFamily ON JobRole.familyID = JobFamily.familyID\n"
+                + "INNER JOIN Capability ON JobFamily.capabilityID = Capability.capabilityID\n"
+                + "ORDER BY Capability.capabilityName ASC");
 
 
         List<Job> jobList = new ArrayList<>();
