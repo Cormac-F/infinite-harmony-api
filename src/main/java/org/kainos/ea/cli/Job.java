@@ -4,15 +4,7 @@ public class Job {
     private int roleID;
     private String roleName;
     private String capabilityName;
-    private String sharepointLink;
 
-
-    public Job(int roleID, String roleName, String capabilityName, String sharepointLink) {
-        this.roleID = roleID;
-        this.roleName = roleName;
-        this.capabilityName = capabilityName;
-        this.sharepointLink = sharepointLink;
-    }
 
     public Job(int roleID, String roleName, String capabilityName) {
         this.roleID = roleID;
@@ -42,14 +34,6 @@ public class Job {
 
     public void setCapabilityName(String capabilityName) {
         this.capabilityName = capabilityName;
-    }
-
-    public String getSharepointLink() {
-        return sharepointLink;
-    }
-
-    public void setSharepointLink(String sharepointLink) {
-        this.sharepointLink = sharepointLink;
     }
 }
 
