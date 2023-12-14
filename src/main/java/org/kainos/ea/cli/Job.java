@@ -1,11 +1,11 @@
 package org.kainos.ea.cli;
 
-public class Job {
+public class Job{
     private int roleID;
     private String roleName;
     private String capabilityName;
 
-    public Job( int roleID, String roleName, String capabilityName) {
+    public Job (int roleID, String roleName, String capabilityName){
         this.roleID = roleID;
         this.roleName = roleName;
         this.capabilityName = capabilityName;
