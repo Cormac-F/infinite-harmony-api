@@ -29,6 +29,7 @@ public class JobService {
 
             throw new FailedToGetJobSpecException();
         }
+    }
 
 
     public List<Job> getAllJobs() throws FailedToGetAllJobsException {

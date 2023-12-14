@@ -38,7 +38,8 @@ public class JobController {
             System.err.println(e.getMessage());
 
             return Response.status(Response.Status.BAD_REQUEST).build();
-          
+        }
+    }
     @GET
     @Path("/job-roles")
     @Produces(MediaType.APPLICATION_JSON)
