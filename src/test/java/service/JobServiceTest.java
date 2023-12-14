@@ -7,7 +7,6 @@ import javax.ws.rs.core.Response;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.kainos.ea.cli.Job;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -15,8 +14,7 @@ import org.kainos.ea.api.JobService;
 import org.kainos.ea.client.FailedToGetAllJobsException;
 import org.kainos.ea.resources.JobController;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 class JobControllerTest {
 

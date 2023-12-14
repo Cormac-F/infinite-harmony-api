@@ -2,12 +2,10 @@ package org.kainos.ea.resources;
 
 import io.swagger.annotations.Api;
 import org.kainos.ea.api.JobService;
-import org.kainos.ea.client.JobSpecDoesNotExistException;
 import org.kainos.ea.client.FailedToGetAllJobsException;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
