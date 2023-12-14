@@ -5,6 +5,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
+import org.kainos.ea.resources.JobController;
 
 public class DropwizardApplication extends Application<DropwizardConfiguration> {
 
@@ -29,7 +30,7 @@ public class DropwizardApplication extends Application<DropwizardConfiguration> 
     @Override
     public void run(final DropwizardConfiguration configuration,
                     final Environment environment) {
-        // TODO: implement application
+        environment.jersey().register(new JobController());
     }
 
 }
