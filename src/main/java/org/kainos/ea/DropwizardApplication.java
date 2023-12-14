@@ -32,7 +32,6 @@ public class DropwizardApplication extends Application<DropwizardConfiguration> 
     public void run(final DropwizardConfiguration configuration,
                     final Environment environment) {
 
-        environment.jersey().register(new JobController());
         environment.jersey().register(new ResponsibilityController());
     }
 
