@@ -18,7 +18,7 @@ public class BandDao {
         Connection c = databaseConnector.getConnection();
         Statement st = c.createStatement();
 
-        ResultSet rs = st.executeQuery("SELECT bandID, bandName, bandLevel FROM Band" );
+        ResultSet rs = st.executeQuery("SELECT bandID, bandName, bandLevel FROM Band");
         List<Band> bandList = new ArrayList<>();
 
         while (rs.next()) {
