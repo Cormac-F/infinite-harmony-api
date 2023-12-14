@@ -28,19 +28,6 @@ class JobServiceTest {
     @InjectMocks
     private JobService jobService;
 
-    /*
-    Test 1
-
-    Write a unit test for the getJobs method
-
-    When the dao returns a list of employees
-
-    Expect the list of employees to be returned
-
-    This should pass without code changes
-
-     */
-
     @Test
     void getAllJobs_shouldReturnListOfJobs() throws SQLException, FailedToGetAllJobsException {
         List<Job> jobs = new ArrayList<>();

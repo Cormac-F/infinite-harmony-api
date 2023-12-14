@@ -14,7 +14,6 @@ public class DatabaseConnectorTest {
 
     @BeforeAll
     public static void setUp() throws SQLException {
-        // Create a test database connection for testing
         DatabaseConnector.getConnection();
         conn = DatabaseConnector.getConnection();
     }
@@ -31,7 +30,6 @@ public class DatabaseConnectorTest {
 
     @AfterAll
     public static void tearDown() throws SQLException {
-        // Close the test database connection after testing
         if (conn != null && !conn.isClosed()) {
             conn.close();
         }

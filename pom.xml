@@ -178,6 +178,7 @@
                 <version>3.3.0</version>
             </plugin>
         </plugins>
+
     </reporting>
     <profiles>
         <profile>

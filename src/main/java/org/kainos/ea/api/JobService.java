@@ -2,11 +2,8 @@ package org.kainos.ea.api;
 
 import org.kainos.ea.cli.Job;
 import org.kainos.ea.client.FailedToGetAllJobsException;
-import org.kainos.ea.db.DatabaseConnector;
 import org.kainos.ea.db.JobDao;
 
-import javax.ws.rs.core.Response;
-import java.sql.Connection;
 
 import java.sql.SQLException;
 import java.util.List;
