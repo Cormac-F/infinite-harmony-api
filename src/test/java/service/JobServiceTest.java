@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,7 +29,7 @@ class JobServiceTest {
     private JobService jobService;
 
     @Test
-    void getAllJobs_shouldReturnListOfJobs() throws SQLException, FailedToGetAllJobsException {
+    void ShouldReturnListOfAllJobs() throws SQLException, FailedToGetAllJobsException {
         List<Job> jobs = new ArrayList<>();
         when(jobDao.getAllJobs()).thenReturn(jobs);
 
