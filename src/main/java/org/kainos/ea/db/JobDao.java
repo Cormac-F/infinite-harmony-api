@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JobDao {
-    private static Connection conn;
     DatabaseConnector databaseConnector = new DatabaseConnector();
 
     public List<Job> getAllJobs() throws SQLException {
@@ -21,6 +20,7 @@ public class JobDao {
         ResultSet rs = st.executeQuery("SELECT roleID, roleName, Capability.capabilityName from JobRole\n"
                 + "INNER JOIN JobFamily on JobRole.familyID = JobFamily.familyID\n"
                 + "INNER JOIN Capability on JobFamily.capabilityID = Capability.capabilityID");
+
 
         List<Job> jobList = new ArrayList<>();
 

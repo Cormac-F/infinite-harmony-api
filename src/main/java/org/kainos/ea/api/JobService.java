@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JobService {
-    private JobDao jobDao = new JobDao();
+    private final JobDao jobDao = new JobDao();
 
     public List<Job> getAllJobs() throws FailedToGetAllJobsException {
         List<Job> jobList;
