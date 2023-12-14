@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import org.kainos.ea.api.JobService;
 import org.kainos.ea.client.FailedToGetJobSpecException;
 import org.kainos.ea.client.JobSpecDoesNotExistException;
+import org.kainos.ea.client.FailedToGetAllJobsException;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
