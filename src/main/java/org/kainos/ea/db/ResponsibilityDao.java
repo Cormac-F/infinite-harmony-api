@@ -16,7 +16,7 @@ public class ResponsibilityDao {
     private DatabaseConnector databaseConnector = new DatabaseConnector();
 
     public List<Responsibility> getRoleResponsibilityById(int id) throws SQLException {
-        String query = "SELECT rt.responsibilityID, rt.responsibilityName FROM Responsibility rt JOIN JobRole jr ON rt.roleID = jr.roleID WHERE jr.roleID = ?";
+        String query = "SELECT rt.responsibilityName FROM Responsibility rt JOIN JobRole jr ON rt.roleID = jr.roleID WHERE jr.roleID = ?";
 
         List<Responsibility> responsibilitiesList = new ArrayList<>();
 
