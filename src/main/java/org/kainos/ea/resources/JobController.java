@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 @Api("Job Role API")
 @Path("/api")
 public class JobController {
-    private JobService jobService = new JobService();
+    private final JobService jobService = new JobService();
 
     @GET
     @Path("/job-roles")
