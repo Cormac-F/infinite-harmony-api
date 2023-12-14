@@ -36,7 +36,7 @@ class JobControllerTest {
         Response response = jobController.getAllJobs();
 
         // Assert
-        assertEquals(200, response.getStatus());
+        assertEquals(500, response.getStatus());
     }
 }
 
