@@ -31,13 +31,9 @@ class JobControllerTest {
 
     @Test
     void testGetAllJobsFailedToGetAllJobs() throws FailedToGetAllJobsException {
-        // Arrange
         when(jobService.getAllJobs()).thenThrow(new FailedToGetAllJobsException());
 
-        // Act
         Response response = jobController.getAllJobs();
-
-        // Assert
         assertEquals(500, response.getStatus());
     }
 }
