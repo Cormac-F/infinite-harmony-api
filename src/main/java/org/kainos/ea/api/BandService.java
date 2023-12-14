@@ -1,15 +1,11 @@
 package org.kainos.ea.api;
 
 import org.kainos.ea.cli.Band;
-import org.kainos.ea.client.FailedToGetAllJobsException;
 import org.kainos.ea.client.FailedToGetBandException;
 import org.kainos.ea.client.FailedToGetBandsException;
 import org.kainos.ea.db.BandDao;
-import org.kainos.ea.db.DatabaseConnector;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 public class BandService {
@@ -19,7 +15,7 @@ public class BandService {
     public List<Band> getBands() throws FailedToGetBandsException {
         List<Band> bandList;
 
-        try{
+        try {
             bandList = bandDao.getAllBands();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -37,7 +33,7 @@ public class BandService {
         try {
             band = bandDao.getBandByID(id);
 
-        } catch(SQLException e){
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
 
             throw new FailedToGetBandException();

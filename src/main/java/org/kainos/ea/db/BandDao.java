@@ -2,22 +2,26 @@ package org.kainos.ea.db;
 
 import org.kainos.ea.cli.Band;
 
-import java.sql.*;
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BandDao {
     private static Connection conn;
-    DatabaseConnector databaseConnector = new DatabaseConnector();
+    private DatabaseConnector databaseConnector = new DatabaseConnector();
 
-    public List<Band> getAllBands() throws SQLException{
+    public List<Band> getAllBands() throws SQLException {
         Connection c = databaseConnector.getConnection();
         Statement st = c.createStatement();
 
         ResultSet rs = st.executeQuery("SELECT bandID, bandName, bandLevel FROM Band" );
         List<Band> bandList = new ArrayList<>();
 
-        while (rs.next()){
+        while (rs.next()) {
             Band band = new Band(
                     rs.getInt("bandID"),
                     rs.getString("bandName"),
@@ -30,7 +34,7 @@ public class BandDao {
     }
 
 
-    public Band getBandByID(int id) throws SQLException{
+    public Band getBandByID(int id) throws SQLException {
         Connection c = databaseConnector.getConnection();
 
         String getBand = "SELECT bandName, bandLevel FROM Band WHERE bandID = ?";
@@ -40,7 +44,7 @@ public class BandDao {
 
         ResultSet returnedVal = preparedStatement.executeQuery();
 
-        while (returnedVal.next()){
+        while (returnedVal.next()) {
             return new Band(
                     id,
                     returnedVal.getString("bandName"),

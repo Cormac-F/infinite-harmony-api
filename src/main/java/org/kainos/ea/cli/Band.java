@@ -10,7 +10,7 @@ public class Band {
         this.bandName = bandName;
         this.bandLevel = bandLevel;
     }
-    public Band(){}
+    public Band() { }
 
     public Band(String bandName, int bandLevel) {
         this.bandName = bandName;
