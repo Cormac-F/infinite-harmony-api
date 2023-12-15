@@ -9,11 +9,11 @@ import org.kainos.ea.cli.Band;
 import org.kainos.ea.client.FailedToGetBandsException;
 import org.kainos.ea.db.BandDao;
 import org.kainos.ea.db.DatabaseConnector;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.kainos.ea.resources.BandController;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.ws.rs.core.Response;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.*;
@@ -23,17 +23,21 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(MockitoExtension.class)
 public class BandServiceTest {
     @Mock
-    BandDao bandDao = Mockito.mock(BandDao.class);
+    private BandDao bandDao = Mockito.mock(BandDao.class);
     @Mock
-    BandService bandService = Mockito.mock(BandService.class);
+    private BandService bandService = Mockito.mock(BandService.class);
+    @InjectMocks
+    private BandController bandController = Mockito.mock(BandController.class);
     @Mock
     DatabaseConnector databaseConnector = Mockito.mock(DatabaseConnector.class);
+    @Mock
     Connection conn;
 
     @BeforeEach
-    void setup() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
+
 
 
     @Test
@@ -52,10 +56,9 @@ public class BandServiceTest {
 
     @Test
     void getBandsShouldThrowFailedToGetBandsWhenSQLExceptThrown() throws SQLException, FailedToGetBandsException {
-        Mockito.when(databaseConnector.getConnection()).thenReturn(conn);
-        Mockito.when(bandDao.getAllBands()).thenReturn(null);
-
-        assertThrows(FailedToGetBandsException.class, () -> bandDao.getAllBands());
+        Mockito.when(bandService).thenThrow(new FailedToGetBandsException());
+        Response response = bandController.getAllBands();
+        assertEquals(500, response.getStatus());
     }
 
 
