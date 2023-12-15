@@ -24,7 +24,7 @@ public class JobDao {
                 + "FROM JobRole\n"
                 + "INNER JOIN JobFamily ON JobRole.familyID = JobFamily.familyID\n"
                 + "INNER JOIN Capability ON JobFamily.capabilityID = Capability.capabilityID\n"
-                + "ORDER BY Capability.capabilityName ASC");
+                + "ORDER BY Capability.capabilityName ASC, roleName ASC");
 
 
         List<Job> jobList = new ArrayList<>();
