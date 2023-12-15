@@ -12,6 +12,9 @@ import org.kainos.ea.db.DatabaseConnector;
 import org.kainos.ea.resources.BandController;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import javax.ws.rs.core.Response;
 import java.sql.Connection;
@@ -20,14 +23,16 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
 public class BandServiceTest {
     @Mock
     private BandDao bandDao = Mockito.mock(BandDao.class);
     @Mock
-    private BandService bandService = Mockito.mock(BandService.class);
+    private BandService bandService;
     @InjectMocks
-    private BandController bandController = Mockito.mock(BandController.class);
+    private BandController bandController;
     @Mock
     DatabaseConnector databaseConnector = Mockito.mock(DatabaseConnector.class);
     @Mock
@@ -38,8 +43,6 @@ public class BandServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-
-
     @Test
     void getBandsShouldReturnBandsWhenDaoReturnsBands() throws SQLException, FailedToGetBandsException {
         List<Band> listBands = Arrays.asList(
@@ -47,7 +50,7 @@ public class BandServiceTest {
                 Mockito.mock(Band.class)
         );
 
-        Mockito.when(bandDao.getAllBands()).thenReturn(listBands);
+        when(bandDao.getAllBands()).thenReturn(listBands);
         List<Band> returnedVals = bandDao.getAllBands();
 
         assertEquals(listBands, returnedVals);
@@ -55,10 +58,10 @@ public class BandServiceTest {
     }
 
     @Test
-    void getBandsShouldThrowFailedToGetBandsWhenSQLExceptThrown() throws SQLException, FailedToGetBandsException {
-        Mockito.when(bandService).thenThrow(new FailedToGetBandsException());
-        Response response = bandController.getAllBands();
-        assertEquals(500, response.getStatus());
+    void getBandsShouldThrowFailedToGetBandsWhenSQLExceptThrown() throws FailedToGetBandsException {
+        when(bandService.getBands()).thenThrow(new FailedToGetBandsException());
+
+        assertEquals(500, bandController.getAllBands().getStatus());
     }
 
 
