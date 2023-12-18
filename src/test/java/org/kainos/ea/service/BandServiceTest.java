@@ -47,7 +47,7 @@ public class BandServiceTest {
     Band testBand = new Band("Test", 1);
     static final int RES = 500;
     static final int IDFAIL = 9;
-    int IDPASS = 1;
+    static final int IDPASS = 1;
 
     @Test
     void getBandsShouldReturnBandsWhenDaoReturnsBands() throws SQLException, FailedToGetBandsException {
