@@ -45,6 +45,9 @@ public class BandServiceTest {
         MockitoAnnotations.openMocks(this);
     }
     Band testBand = new Band("Test", 1);
+    int expectedResponse = 500;
+    int testIDFail = 9;
+    int testIDPass = 1;
 
     @Test
     void getBandsShouldReturnBandsWhenDaoReturnsBands() throws SQLException, FailedToGetBandsException {
@@ -63,25 +66,23 @@ public class BandServiceTest {
     @Test
     void getBandsShouldThrowFailedToGetBandsWhenSQLExceptThrown() throws FailedToGetBandsException {
         when(bandService.getBands()).thenThrow(new FailedToGetBandsException());
-        int expectedRes = 500;
 
-        assertEquals(expectedRes, bandController.getAllBands().getStatus());
+        assertEquals(expectedResponse, bandController.getAllBands().getStatus());
     }
 
     @Test
     void getBandShouldReturnBandWhenCalled() throws SQLException {
-        int bandId = 1;
-        Mockito.when(bandDao.getBandByID(bandId)).thenReturn(testBand);
+        Mockito.when(bandDao.getBandByID(testIDPass)).thenReturn(testBand);
 
-        assertEquals(testBand, bandDao.getBandByID(bandId));
+        assertEquals(testBand, bandDao.getBandByID(testIDPass));
 
     }
 
     @Test
     void getBandShouldReturnFailedToGetBandExceptionWhenIDIs9() throws FailedToGetBandException, SQLException {
-        int bandId = 9;
-        Mockito.when(bandService.getBandByID(bandId)).thenThrow(FailedToGetBandException.class);
-        assertThrows(FailedToGetBandException.class, () -> bandService.getBandByID(bandId));
+        Mockito.when(bandService.getBandByID(testIDFail)).thenThrow(FailedToGetBandException.class);
+
+        assertThrows(FailedToGetBandException.class, () -> bandService.getBandByID(testIDFail));
 
     }
 
