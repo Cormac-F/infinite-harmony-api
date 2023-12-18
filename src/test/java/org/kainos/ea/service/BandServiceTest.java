@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.kainos.ea.api.BandService;
 import org.kainos.ea.cli.Band;
+import org.kainos.ea.client.FailedToGetBandException;
 import org.kainos.ea.client.FailedToGetBandsException;
 import org.kainos.ea.db.BandDao;
 import org.kainos.ea.db.DatabaseConnector;
@@ -42,6 +43,7 @@ public class BandServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
+    Band testBand = new Band("Test", 1);
 
     @Test
     void getBandsShouldReturnBandsWhenDaoReturnsBands() throws SQLException, FailedToGetBandsException {
@@ -62,6 +64,21 @@ public class BandServiceTest {
         when(bandService.getBands()).thenThrow(new FailedToGetBandsException());
 
         assertEquals(500, bandController.getAllBands().getStatus());
+    }
+
+    @Test
+    void getBandShouldReturnBandWhenCalled() throws SQLException {
+        Mockito.when(bandDao.getBandByID(1)).thenReturn(testBand);
+
+        assertEquals(testBand, bandDao.getBandByID(1));
+
+    }
+
+    @Test
+    void getBandShouldReturnFailedToGetBandExceptionWhenIDIs9() throws FailedToGetBandException, SQLException {
+        Mockito.when(bandService.getBandByID(9)).thenThrow(FailedToGetBandException.class);
+        assertThrows(FailedToGetBandException.class,() -> bandService.getBandByID(9));
+
     }
 
 
