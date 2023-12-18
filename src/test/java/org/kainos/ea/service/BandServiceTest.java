@@ -45,8 +45,8 @@ public class BandServiceTest {
         MockitoAnnotations.openMocks(this);
     }
     Band testBand = new Band("Test", 1);
-    int expectedResponse = 500;
-    int testIDFail = 9;
+    static final int expectedResponse = 500;
+    static final int testIDFail = 9;
     int testIDPass = 1;
 
     @Test
