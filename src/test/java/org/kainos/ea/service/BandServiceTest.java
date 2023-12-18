@@ -11,16 +11,17 @@ import org.kainos.ea.client.FailedToGetBandsException;
 import org.kainos.ea.db.BandDao;
 import org.kainos.ea.db.DatabaseConnector;
 import org.kainos.ea.resources.BandController;
-import org.mockito.*;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
-import javax.ws.rs.core.Response;
+
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -62,22 +63,25 @@ public class BandServiceTest {
     @Test
     void getBandsShouldThrowFailedToGetBandsWhenSQLExceptThrown() throws FailedToGetBandsException {
         when(bandService.getBands()).thenThrow(new FailedToGetBandsException());
+        int expectedRes = 500;
 
-        assertEquals(500, bandController.getAllBands().getStatus());
+        assertEquals(expectedRes, bandController.getAllBands().getStatus());
     }
 
     @Test
     void getBandShouldReturnBandWhenCalled() throws SQLException {
-        Mockito.when(bandDao.getBandByID(1)).thenReturn(testBand);
+        int bandId = 1;
+        Mockito.when(bandDao.getBandByID(bandId)).thenReturn(testBand);
 
-        assertEquals(testBand, bandDao.getBandByID(1));
+        assertEquals(testBand, bandDao.getBandByID(bandId));
 
     }
 
     @Test
     void getBandShouldReturnFailedToGetBandExceptionWhenIDIs9() throws FailedToGetBandException, SQLException {
-        Mockito.when(bandService.getBandByID(9)).thenThrow(FailedToGetBandException.class);
-        assertThrows(FailedToGetBandException.class,() -> bandService.getBandByID(9));
+        int bandId = 9;
+        Mockito.when(bandService.getBandByID(bandId)).thenThrow(FailedToGetBandException.class);
+        assertThrows(FailedToGetBandException.class, () -> bandService.getBandByID(bandId));
 
     }
 
