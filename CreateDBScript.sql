@@ -53,7 +53,7 @@ CREATE TABLE JobRole (
   roleName VARCHAR(50) NOT NULL,
   bandID INT NOT NULL,
   familyID INT NOT NULL,
-  specSummary VARCHAR(500) NOT NULL,
+  specSummary VARCHAR(900) NOT NULL,
   sharepointLink VARCHAR(1000),
   FOREIGN KEY (bandID) REFERENCES Band(bandID),
   FOREIGN KEY (familyID) REFERENCES JobFamily(familyID)
@@ -83,12 +83,13 @@ CREATE TABLE Family_Lead (
   FOREIGN KEY (familyID) REFERENCES JobFamily(familyID)
 );
 
-
+# USED FOR LOGIN
 CREATE TABLE `Role`(
 	RoleID TINYINT PRIMARY KEY NOT NULL,
     Name VARCHAR(64) NOT NULL
 );
 
+# USED FR LOGIN
 CREATE TABLE `User`(
 	Username VARCHAR(64) PRIMARY KEY NOT NULL,
     `Password` VARCHAR(64) NOT NULL,
@@ -96,7 +97,7 @@ CREATE TABLE `User`(
     FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
     );
     
-    
+#USED FOR LOGIN
 CREATE TABLE Token(
 	Username VARCHAR(64) NOT NULL,
     Token VARCHAR(64) NOT NULL,
@@ -104,6 +105,7 @@ CREATE TABLE Token(
     FOREIGN KEY (Username) REFERENCES User(Username)
 
 );
+
 
 INSERT INTO TeamLead
 (`leadID`, `leadForename`, `leadSurname`, `leadMessage`)
@@ -157,6 +159,100 @@ VALUES
 ('47','Owen','Campbell','temporary message'),
 ('48','Scarlett','Simmons','temporary message'),
 ('49','Leo','Hughes','queen of all time');
+
+
+
+
+INSERT INTO Capability (capabilityID, capabilityName)
+VALUES 
+    (1, 'Engineering'),
+    (2, 'Platforms'),
+    (3, 'Data and Artificial Intelligence'),
+    (4, 'Cyber Security'),
+    (5, 'Workday'),
+    (6, 'Experience Design'),
+    (7, 'Product'),
+    (8, 'Delivery'),
+    (9, 'Operations'),
+    (10, 'Business Development and Marketing'),
+    (11, 'Organisational Strategy and Planning'),
+    (12, 'People'),
+    (13, 'Commercial and Financial Management'),
+    (14, 'Business Services Support');
+
+
+
+INSERT INTO JobFamily (familyID, familyName, capabilityID)
+VALUES
+    (1, 'Engineering Strategy and Planning', 1),
+    (2, 'Engineering', 1),
+    (3, 'Architecture', 1),
+    (4, 'Testing and Quality Assurance', 1),
+    (5, 'Product Specialist', 1),
+    (6, 'Low Code Engineering', 1),
+    (7, 'Platform Strategy and Planning', 2),
+    (8, 'Platform Engineering', 2),
+    (9, 'Platform Architecture', 2),
+    (10, 'Platform Specialists', 2),
+    (11, 'Cloud Migration', 2),
+    (12, 'Systems Support', 2),
+    (13, 'Data Engineering', 3),
+    (14, 'Data Architecture', 3),
+    (15, 'Artificial Intelligence Engineering', 3),
+    (16, 'Data Science', 3),
+    (17, 'Data Consulting', 3),
+    (18, 'Data Analytics', 3),
+    (19, 'Security Strategy and Planning', 4),
+    (20, 'Security Engineering', 4),
+    (21, 'Corporate Security', 4),
+    (22, 'Strategy and Planning', 5),
+    (23, 'HCM', 5),
+    (24, 'Financials', 5),
+    (25, 'Data', 5),
+    (26, 'Integrations', 5),
+    (27, 'Change & User Adoption', 5),
+    (28, 'Adaptive Planning', 5),
+    (29, 'Product Services', 5),
+    (30, 'Product Development', 5),
+    (31, 'Extend', 5),
+    (32, 'Spending Management', 5),
+    (33, 'Insights', 6),
+    (34, 'Content Design', 6),
+    (35, 'UX/Visual Design', 6),
+    (36, 'Service Design', 6),
+    (37, 'Product Consultancy', 7),
+    (38, 'Digital Advisory Consultancy', 7),
+    (39, 'Low Code Consultancy', 7),
+    (40, 'Delivery Strategy and Planning', 8),
+    (41, 'Delivery Management', 8),
+    (42, 'Engineering Management', 8),
+    (43, 'Service Management', 8),
+    (44, 'Workday Engagement Management', 8),
+    (45, 'Project Management Office', 8),
+    (46, 'Operations Strategy and Planning', 9),
+    (47, 'Operational Management', 9),
+    (48, 'Staff Management', 9),
+    (49, 'Strategy and Planning', 10),
+    (50, 'Business Development', 10),
+    (51, 'Client Management', 10),
+    (52, 'Partners', 10),
+    (53, 'Bid Production', 10),
+    (54, 'Inside Sales', 10),
+    (55, 'Marketing - Business', 10),
+    (56, 'Marketing - Martech', 10),
+    (57, 'Organisational Strategy and Planning', 11),
+    (58, 'People Strategy and Planning', 12),
+    (59, 'People Operations / Strategic Partnering', 12),
+    (60, 'Engagement, Culture and Development', 12),
+    (61, 'Talent Acquisition', 12),
+    (62, 'Commercial and Financial Management Strategy and Planning', 13),
+    (63, 'Commercial', 13),
+    (64, 'Financial Management', 13),
+    (65, 'Payroll', 13),
+    (66, 'Business Services', 14),
+    (67, 'Property Management', 14),
+    (68, 'Travel Management', 14),
+    (69, 'Corporate Social Responsibility Management', 14);
 
 
 INSERT INTO Family_Lead (familyID, leadID, subGroupName) VALUES
@@ -236,141 +332,6 @@ INSERT INTO Family_Lead (familyID, leadID, subGroupName) VALUES
 (69, 49, NULL);
 
 
-INSERT INTO Capability (capabilityID, capabilityName)
-VALUES 
-    (1, 'Engineering'),
-    (2, 'Platforms'),
-    (3, 'Data and Artificial Intelligence'),
-    (4, 'Cyber Security'),
-    (5, 'Workday'),
-    (6, 'Experience Design'),
-    (7, 'Product'),
-    (8, 'Delivery'),
-    (9, 'Operations'),
-    (10, 'Business Development and Marketing'),
-    (11, 'Organisational Strategy and Planning'),
-    (12, 'People'),
-    (13, 'Commercial and Financial Management'),
-    (14, 'Business Services Support');
-
-INSERT INTO JobFamily (familyID, familyName, capabilityID)
-VALUES
-    (1, 'Engineering Strategy and Planning', 1),
-    (2, 'Engineering', 1),
-    (3, 'Architecture', 1),
-    (4, 'Testing and Quality Assurance', 1),
-    (5, 'Product Specialist', 1),
-    (6, 'Low Code Engineering', 1),
-    (7, 'Platform Strategy and Planning', 2),
-    (8, 'Platform Engineering', 2),
-    (9, 'Platform Architecture', 2),
-    (10, 'Platform Specialists', 2),
-    (11, 'Cloud Migration', 2),
-    (12, 'Systems Support', 2),
-    (13, 'Data Engineering', 3),
-    (14, 'Data Architecture', 3),
-    (15, 'Artificial Intelligence Engineering', 3),
-    (16, 'Data Science', 3),
-    (17, 'Data Consulting', 3),
-    (18, 'Data Analytics', 3),
-    (19, 'Security Strategy and Planning', 4),
-    (20, 'Security Engineering', 4),
-    (21, 'Corporate Security', 4),
-    (22, 'Strategy and Planning', 5),
-    (23, 'HCM', 5),
-    (24, 'Financials', 5),
-    (25, 'Data', 5),
-    (26, 'Integrations', 5),
-    (27, 'Change & User Adoption', 5),
-    (28, 'Adaptive Planning', 5),
-    (29, 'Product Services', 5),
-    (30, 'Product Development', 5),
-    (31, 'Extend', 5),
-    (32, 'Spending Management', 5),
-    (33, 'Insights', 6),
-    (34, 'Content Design', 6),
-    (35, 'UX/Visual Design', 6),
-    (36, 'Service Design', 6),
-    (37, 'Product Consultancy', 7),
-    (38, 'Digital Advisory Consultancy', 7),
-    (39, 'Low Code Consultancy', 7),
-    (40, 'Delivery Strategy and Planning', 8),
-    (41, 'Delivery Management', 8),
-    (42, 'Engineering Management', 8),
-    (43, 'Service Management', 8),
-    (44, 'Workday Engagement Management', 8),
-    (45, 'Project Management Office', 8),
-    (46, 'Operations Strategy and Planning', 9),
-    (47, 'Operational Management', 9),
-    (48, 'Staff Management', 9),
-    (49, 'Strategy and Planning', 10),
-    (50, 'Business Development', 10),
-    (51, 'Client Management', 10),
-    (52, 'Partners', 10),
-    (53, 'Bid Production', 10),
-    (54, 'Inside Sales', 10),
-    (55, 'Marketing - Business', 10),
-    (56, 'Marketing - Martech', 10),
-    (57, 'Organisational Strategy and Planning', 11),
-    (58, 'People Strategy and Planning', 12),
-    (59, 'People Operations / Strategic Partnering', 12),
-    (60, 'Engagement, Culture and Development', 12),
-    (61, 'Talent Acquisition', 12),
-    (62, 'Commercial and Financial Management Strategy and Planning', 13),
-    (63, 'Commercial', 13),
-    (64, 'Financial Management', 13),
-    (65, 'Payroll', 13),
-    (66, 'Business Services', 14),
-    (67, 'Property Management', 14),
-    (68, 'Travel Management', 14),
-    (69, 'Corporate Social Responsibility Management', 14);
-
-
-INSERT INTO Responsibility (responsibilityID, responsibilityName, roleID)
-VALUES
-(38,'Ensure all Outreach initiatives accurately reflect Kainos values and standards.',1704),
-(39,'Supporting research and evaluation of the latest trends, techniques.',1704),
-(40,'Coordinating high quality Outreach initiatives in collaboration with partners in the IT Industry, Education and Government sectors',1704),
-(41,'Ensuring Travel support service is provided to cover all out of hours periods required',1703),
-(42,'Managing and monitoring travel policies, guidelines, processes.',1703),
-(43,'Leading, managing and developing the Travel Team.',1703),
-(44,'Be amicable and approachable with a mature, collaborative style.',1701),
-(45,'Highly flexible, including willingness to work flexible hours at peak times.',1701),
-(46,'Be amicable and approachable with a mature, collaborative style.',1701),
-(47,' Managing of the month end timetable to ensure timely and accurate completion of all tasks.',1602),
-(48,'Developing timely, accurate and high-quality monthly reporting packs, focusing on continuous improvements and meeting the business needs.',1602),
-(49,'Performing full end to end legal services as directed by senior team members and have accountability as appropriate for standalone work.',1601),
-(50,'Ability to advise on and undertake a wide range of complex and cross jurisdictional legal matters.',1601),
-(51,'Developing, maintaining and seeking to continually improve a recruitment function in line with a rapidly growing international business.',1503),
-(52,'Managing the Recruitment Budget to achieve maximum return on investment.',1503),
-(53,'Creates sound business cases when team expansion is required.',1503),
-(54,'Managing and co-ordinating all people related processes and tasks.',1501),
-(55,'Supporting our global business.',1501),
-(56,'Further develop a new strong customer service ethos for the Systems and Compliance teams to better help the business.',1401),
-(57,'Set the objectives and mentor the IT Operations and internal platform team.',1401),
-(58,'Inbound and outbound campaigns. Marketing Automation',1308),
-(59,'Owning and implementing digital strategy and plans.',1308),
-(60,'Developing Kainos as a business. Assisting with strategic alignment.',1306),
-(61,'Supporting prospecting and opportunity qualification activities.',1306),
-(62,'Providing Business Development Leadership.',1304),
-(63,'Developing Kainos as a business.',1304),
-(64,'Co-ordinating and managing senior stakeholders',1304),
-(65,'Developing and strengthening partnerships.',1302),
-(66,'Being a trusted advisor for our customers.',1302),
-(67,'Negotiating and managing senior stakeholders',1302),
-(68,'Providing support to the Staffing + PMO Lead as required.',1203),
-(69,'Managing the day to day staffing and PMO activities across multiple locations.',1203),
-(70,'Setting comprehensive goals for commercial performance and growth of their sectors/regions within the BU.',1202),
-(71,'Full operational accountability for one or more sector/region(s) within the BU.',1202),
-(72,'Full operational accountability for the sector/region, developing and clearly communicating the vision and strategy in a way that engages and empowers others',1201),
-(73,'Setting the strategic direction within the sector/region for all operational matters.',1201),
-(74,'Acting as the key client interface between functional and technical teams and the client.',1105),
-(75,'Commercially managing the implementation of solutions from pre-sales through implementation and hand over.',1105),
-(76,'Must be able to exhibit the following; Delivery, Business Development & Account Management, Team, Governance, Professional Development and Growth.',1104),
-(77,'Advising on which methodology or hybrid approach is best suited for the specific client needs. Improve Kainos reputation by building strong client relationships',1102);
-
-
-
 
 INSERT INTO Band (bandID, bandName, bandLevel)
 Values (100, 'Leadership','0'),
@@ -391,7 +352,7 @@ VALUES (1,'Personal Performance'),
 (6,'Communication and Influence');
 
  
-INSERT INTO `` (`competencyID`,`bandID`,`competencyDescription`) VALUES (1,100,'Uses sophisticated tools and sources to continuously learn about own leadership impact across the wider business community and improve personal effectiveness as a senior leader. Understands how pressures associated with carrying out a high-profile role impacts personally and own performance. \nRemains focused on the wider Kainos strategic goals when faced with competing and, at times, conflicting demands arising from differing priorities. Identifies where the need to personally get involved to ac'),
+INSERT INTO `Competency_Band` (`competencyID`,`bandID`,`competencyDescription`) VALUES (1,100,'Uses sophisticated tools and sources to continuously learn about own leadership impact across the wider business community and improve personal effectiveness as a senior leader. Understands how pressures associated with carrying out a high-profile role impacts personally and own performance. \nRemains focused on the wider Kainos strategic goals when faced with competing and, at times, conflicting demands arising from differing priorities. Identifies where the need to personally get involved to ac'),
  (1,101,'Reflects on own interactions with a wide and diverse range of individuals and groups from within and beyond immediate service/organisation. Challenges and refreshes own values, beliefs, leadership styles and approaches. Overtly role models the giving and receiving of feedback. \nSuccessfully manages a range of personal and organisational demands and pressures. Demonstrates tenacity and resilience. Overcomes setbacks where goals cannot be achieved and quickly refocuses. Is visible and accessible t'),
  (1,102,'Reflects on how factors such as own values, prejudices and emotions influences own judgement, behaviour, and self-belief. Uses feedback from appraisals and other sources to consider personal impact and changes behaviour. Understands personal sources of stress and wellbeing. \nPlans and manages own time effectively and fulfils work requirements and commitments to a high standard, without compromising own health and wellbeing. Remains calm and focused under pressure.\nProactively manages self and ca'),
  (1,103,'Understands own personal preferences, biases and values different cultures, backgrounds and circumstances in decision making and takes actions. Champions Kainos wellbeing offerings and provides direction to the various wellbeing guides and support available for our people. \nConsistently sets own goals and manages this independently. Making autonomous decisions and are able to ‘get on with the job’ escalating decisions only when appropriate. \nIdentifies and addresses team or individual capability'),
@@ -737,8 +698,6 @@ You will provide assurance and support to multi-skilled agile teams by understan
 'https://kainossoftwareltd.sharepoint.com/people/Job%20Specifications/Forms/AllItems.aspx?id=%2Fpeople%2FJob%20Specifications%2FData%20and%20Artificial%20Intelligence%2FJob%20Profile%20%2D%20Principal%20Data%20and%20AI%20Consultant%20%2Epdf&parent=%2Fpeople%2FJob%20Specifications%2FData%20and%20Artificial%20Intelligence&p=true&ga=1'
 );
 
-# MAKE SUMMARY DESCRIPTION CHAR LONGER 
-
 INSERT INTO JobRole (roleID, roleName, bandID, familyID, specSummary, sharepointLink)
 VALUES
 (6005,'Senior Security Engineer',104,20,'As a Senior Security Engineer, you will work in close collaboration with our technology teams to design and implement secure, cloud-based software solutions for our clients. Working as part of a multi-disciplinary Agile team, you will implement DevSecOps practices throughout the software development lifecycle, embedding security practices (e.g. vulnerability management, threat modelling etc.) and automating security artifact generation (e.g. secret scanning, container security, SAST, DAST etc.). You will provide subject matter expertise in application security or cloud security – sharing knowledge on threats and vulnerabilities, identifying appropriate security controls, and increasing cyber security awareness within teams.',
@@ -944,14 +903,48 @@ This is a manager level role, reporting directly into the Group Head of Finance.
 'https://kainossoftwareltd.sharepoint.com/people/Job%20Specifications/Forms/AllItems.aspx?id=%2Fpeople%2FJob%20Specifications%2FBusiness%20Services%20Support%2FJob%20profile%20%2D%20Outreach%20and%20Engagement%20%28SA%29%2Epdf&parent=%2Fpeople%2FJob%20Specifications%2FBusiness%20Services%20Support'
 );
 
-
-
-
-
-
-
-
-
+INSERT INTO Responsibility (responsibilityID, responsibilityName, roleID)
+VALUES
+(38,'Ensure all Outreach initiatives accurately reflect Kainos values and standards.',1704),
+(39,'Supporting research and evaluation of the latest trends, techniques.',1703),
+(40,'Coordinating high quality Outreach initiatives in collaboration with partners in the IT Industry, Education and Government sectors',1704),
+(41,'Ensuring Travel support service is provided to cover all out of hours periods required',1703),
+(42,'Managing and monitoring travel policies, guidelines, processes.',1703),
+(43,'Leading, managing and developing the Travel Team.',1703),
+(44,'Be amicable and approachable with a mature, collaborative style.',1701),
+(45,'Highly flexible, including willingness to work flexible hours at peak times.',1701),
+(46,'Be amicable and approachable with a mature, collaborative style.',1701),
+(47,' Managing of the month end timetable to ensure timely and accurate completion of all tasks.',1702),
+(48,'Developing timely, accurate and high-quality monthly reporting packs, focusing on continuous improvements and meeting the business needs.',1702),
+(49,'Performing full end to end legal services as directed by senior team members and have accountability as appropriate for standalone work.',1701),
+(50,'Ability to advise on and undertake a wide range of complex and cross jurisdictional legal matters.',1701),
+(51,'Developing, maintaining and seeking to continually improve a recruitment function in line with a rapidly growing international business.',1303),
+(52,'Managing the Recruitment Budget to achieve maximum return on investment.',1303),
+(53,'Creates sound business cases when team expansion is required.',1303),
+(54,'Managing and co-ordinating all people related processes and tasks.',1301),
+(55,'Supporting our global business.',1301),
+(56,'Further develop a new strong customer service ethos for the Systems and Compliance teams to better help the business.',1401),
+(57,'Set the objectives and mentor the IT Operations and internal platform team.',1401),
+(58,'Inbound and outbound campaigns. Marketing Automation',1308),
+(59,'Owning and implementing digital strategy and plans.',1308),
+(60,'Developing Kainos as a business. Assisting with strategic alignment.',1306),
+(61,'Supporting prospecting and opportunity qualification activities.',1306),
+(62,'Providing Business Development Leadership.',1304),
+(63,'Developing Kainos as a business.',1304),
+(64,'Co-ordinating and managing senior stakeholders',1304),
+(65,'Developing and strengthening partnerships.',1302),
+(66,'Being a trusted advisor for our customers.',1302),
+(67,'Negotiating and managing senior stakeholders',1302),
+(68,'Providing support to the Staffing + PMO Lead as required.',1203),
+(69,'Managing the day to day staffing and PMO activities across multiple locations.',1203),
+(70,'Setting comprehensive goals for commercial performance and growth of their sectors/regions within the BU.',1202),
+(71,'Full operational accountability for one or more sector/region(s) within the BU.',1202),
+(72,'Full operational accountability for the sector/region, developing and clearly communicating the vision and strategy in a way that engages and empowers others',1201),
+(73,'Setting the strategic direction within the sector/region for all operational matters.',1201),
+(74,'Acting as the key client interface between functional and technical teams and the client.',1105),
+(75,'Commercially managing the implementation of solutions from pre-sales through implementation and hand over.',1105),
+(76,'Must be able to exhibit the following; Delivery, Business Development & Account Management, Team, Governance, Professional Development and Growth.',1104),
+(77,'Advising on which methodology or hybrid approach is best suited for the specific client needs. Improve Kainos reputation by building strong client relationships',1102);
 
 
 
