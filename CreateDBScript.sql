@@ -1,6 +1,3 @@
-
-DROP DATABASE IH_AideenMc;
-
 CREATE DATABASE IF NOT EXISTS IH_AideenMc;
 
 use IH_AideenMc;
