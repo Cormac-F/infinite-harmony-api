@@ -35,6 +35,7 @@ public class Job {
 
     public void setBandName(String bandName) {
         this.bandName = bandName;
+    }
       
     public String getCapabilityName() {
         return capabilityName;

@@ -68,26 +68,4 @@ public class JobDao {
         return null;
     }
 
-    public List<Job> getAllJobs() throws SQLException {
-        Connection c = databaseConnector.getConnection();
-
-        Statement st = c.createStatement();
-
-        ResultSet rs = st.executeQuery("SELECT JobRole.roleID, JobRole.roleName, Band.bandName FROM JobRole"
-                + " INNER JOIN Band on JobRole.bandID = Band.bandID;");
-
-        List<Job> jobList = new ArrayList<>();
-
-        while (rs.next()) {
-            Job job = new Job(
-                    rs.getInt("roleID"),
-                    rs.getString("roleName"),
-                    rs.getString("bandName")
-            );
-            jobList.add(job);
-        }
-
-        return jobList;
-    }
-
 }
