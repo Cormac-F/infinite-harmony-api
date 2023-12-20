@@ -3,6 +3,7 @@ package org.kainos.ea.service;
 import org.kainos.ea.cli.Login;
 import org.kainos.ea.db.AuthDao;
 import org.kainos.ea.api.AuthService;
+import org.kainos.ea.resources.AuthController;
 import org.kainos.ea.client.FailedToLoginException;
 import org.kainos.ea.client.FailedToGenerateTokenException;
 
@@ -26,6 +27,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
+
+@ExtendWith(MockitoExtension.class)
 public class AuthServiceTest {
+    @Mock
+    private AuthDao authDao;
+    @Mock
+    private AuthService authService;
+    @Mock
+    private AuthController authController;
+    @Mock
+    DatabaseConnector databaseConnector = Mockito.mock(DatabaseConnector.class);
+    @Mock
+    Connection conn;
+
 
 }
