@@ -18,7 +18,7 @@ public class ResponsibilityService {
         try {
             responsibilitiesList = responsibilityDao.getRoleResponsibilityById(id);
 
-            if (responsibilitiesList == null) {
+            if (responsibilitiesList.size() == 0) {
                 throw new RoleResponsibilityDoesNotExistException();
             }
 
