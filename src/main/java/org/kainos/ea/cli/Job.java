@@ -3,12 +3,13 @@ package org.kainos.ea.cli;
 public class Job {
     private int roleID;
     private String roleName;
+    private String bandName;
     private String capabilityName;
-
 
     public Job(int roleID, String roleName, String capabilityName) {
         this.roleID = roleID;
         this.roleName = roleName;
+        this.bandName = bandName;
         this.capabilityName = capabilityName;
     }
 
@@ -28,6 +29,14 @@ public class Job {
         this.roleName = roleName;
     }
 
+    public String getBandName() {
+        return bandName;
+    }
+
+    public void setBandName(String bandName) {
+        this.bandName = bandName;
+    }
+
     public String getCapabilityName() {
         return capabilityName;
     }
@@ -38,7 +47,6 @@ public class Job {
 
     private String specSummary;
     private String sharepointLink;
-
 
     public Job(int roleID, String roleName, String specSummary, String sharepointLink) {
         this.roleID = roleID;

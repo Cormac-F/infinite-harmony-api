@@ -6,5 +6,4 @@ public class FailedToGetAllJobsException extends Exception {
     public String getMessage() {
         return "Failed to get the list of Jobs.";
     }
-
 }
