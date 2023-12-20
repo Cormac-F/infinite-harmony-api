@@ -8,12 +8,10 @@ public class Responsibility {
     }
 
     public String getResponsibilityName() {
-
         return responsibilityName;
     }
 
     public void setResponsibilityName(String responsibilityName) {
-
         this.responsibilityName = responsibilityName;
     }
 }
