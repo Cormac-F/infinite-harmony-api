@@ -35,7 +35,7 @@ public class ResponsibilityDao {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Error executing SQL query", e);
+            System.out.println(e.getMessage());
         }
 
         return responsibilitiesList;
