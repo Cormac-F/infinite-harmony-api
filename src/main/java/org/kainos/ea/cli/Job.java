@@ -3,10 +3,20 @@ package org.kainos.ea.cli;
 public class Job {
     private int roleID;
     private String roleName;
+    private String capabilityName;
 
-    public Job(int roleID, String roleName) {
+    public Job(int roleID, String roleName, String capabilityName) {
         this.roleID = roleID;
         this.roleName = roleName;
+        this.capabilityName = capabilityName;
+    }
+
+    public String getCapabilityName() {
+        return capabilityName;
+    }
+
+    public void setCapabilityName(String capabilityName) {
+        this.capabilityName = capabilityName;
     }
 
     public int getRoleID() {
