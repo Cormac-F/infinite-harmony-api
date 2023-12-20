@@ -7,6 +7,7 @@ import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import org.kainos.ea.resources.BandController;
 import org.kainos.ea.resources.JobController;
+import org.kainos.ea.resources.ResponsibilityController;
 
 public class DropwizardApplication extends Application<DropwizardConfiguration> {
 
@@ -33,6 +34,7 @@ public class DropwizardApplication extends Application<DropwizardConfiguration> 
                     final Environment environment) {
         environment.jersey().register(new JobController());
         environment.jersey().register(new BandController());
+        environment.jersey().register(new ResponsibilityController());
     }
 
 }
