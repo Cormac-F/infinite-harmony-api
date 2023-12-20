@@ -2,10 +2,7 @@ package org.kainos.ea.db;
 
 import org.kainos.ea.cli.Job;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +36,32 @@ public class JobDao {
         }
 
         return jobList;
+    }
+
+    public Job getJobSpecById(int id) throws SQLException {
+        Connection c = databaseConnector.getConnection();
+
+        PreparedStatement ps = null;
+
+        ResultSet rs = null;
+
+
+        String query = "SELECT roleID, roleName, specSummary, sharepointLink FROM JobRole WHERE roleID = ?";
+        ps = c.prepareStatement(query);
+        ps.setInt(1, id);
+
+        rs = ps.executeQuery();
+
+        while (rs.next()) {
+            return new Job(
+                    rs.getInt("roleID"),
+                    rs.getString("roleName"),
+                    rs.getString("specSummary"),
+                    rs.getString("sharepointLink")
+            );
+        }
+
+        return null;
     }
 
 }
