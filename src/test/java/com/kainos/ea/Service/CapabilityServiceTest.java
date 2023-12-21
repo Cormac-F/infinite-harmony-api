@@ -27,8 +27,15 @@ import java.util.List;
 import static java.sql.Types.NULL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.times;
+
 
 @ExtendWith(MockitoExtension.class)
 public class CapabilityServiceTest {
@@ -58,7 +65,7 @@ public class CapabilityServiceTest {
     static final int IDNULL = NULL;
 
     @Test
-    void getCapabilitiesShouldReturnCapabilitiesWhenDaoReturnsCapabilities() throws SQLException, FailedToGetCapabilitiesException {
+    void getCapabilitiesShouldReturnCapabilitiesWhenDaoReturnsCapabilities() throws SQLException {
         List<Capability> listCapabilities = Arrays.asList(
                 Mockito.mock(Capability.class),
                 Mockito.mock(Capability.class)
@@ -72,7 +79,8 @@ public class CapabilityServiceTest {
     }
 
     @Test
-    void getCapabilitiesShouldThrowFailedToGetCapabilitiesWhenSQLExceptThrown() throws FailedToGetCapabilitiesException {
+    void getCapabilitiesShouldThrowFailedToGetCapabilitiesWhenSQLExceptThrown()
+            throws FailedToGetCapabilitiesException {
         when(capabilityService.getAllCapabilities()).thenThrow(new FailedToGetCapabilitiesException());
 
         assertEquals(RES, capabilityController.getAllCapabilities().getStatus());
@@ -80,15 +88,15 @@ public class CapabilityServiceTest {
 
     @Test
     void getCapabilityShouldReturnCapabilityWhenCalled() throws SQLException {
-        Mockito.when(capabilityDao.getCapabilityByID(IDPASS)).thenReturn(testCapability);
+        when(capabilityDao.getCapabilityByID(IDPASS)).thenReturn(testCapability);
 
         assertEquals(testCapability, capabilityDao.getCapabilityByID(IDPASS));
 
     }
 
     @Test
-    void getCapabilityShouldReturnFailedToGetCapabilityExceptionWhenIDIs100() throws FailedToGetCapabilityException, SQLException {
-        Mockito.when(capabilityService.getCapabilityByID(IDFAIL)).thenThrow(FailedToGetCapabilityException.class);
+    void getCapabilityShouldReturnFailedToGetCapabilityExceptionWhenIDIs100() throws FailedToGetCapabilityException {
+        when(capabilityService.getCapabilityByID(IDFAIL)).thenThrow(FailedToGetCapabilityException.class);
 
         assertThrows(FailedToGetCapabilityException.class, () -> capabilityService.getCapabilityByID(IDFAIL));
     }
@@ -98,7 +106,8 @@ public class CapabilityServiceTest {
         CapabilityRequest capabilityRequest = new CapabilityRequest("");
         when(capabilityDao.getCapabilityByID(id)).thenReturn(null);
 
-        assertThrows(CapabilityDoesNotExistException.class, () -> capabilityService.updateCapability(id, capabilityRequest));
+        assertThrows(CapabilityDoesNotExistException.class,
+                () -> capabilityService.updateCapability(id, capabilityRequest));
         verify(capabilityDao, never()).updateCapability(anyInt(), any(CapabilityRequest.class));
     }
     @Test
@@ -109,13 +118,15 @@ public class CapabilityServiceTest {
         when(capabilityDao.getCapabilityByID(id)).thenReturn(new Capability(12,"people"));
         doThrow(SQLException.class).when(capabilityDao).updateCapability(id, capabilityRequest);
 
-        assertThrows(FailedToUpdateCapabilityException.class, () -> capabilityService.updateCapability(id, capabilityRequest));
+        assertThrows(FailedToUpdateCapabilityException.class,
+                () -> capabilityService.updateCapability(id, capabilityRequest));
         verify(capabilityDao, times(1)).updateCapability(eq(id), eq(capabilityRequest));
     }
 
 
     @Test
-    void updateCapabilityShouldUpdateCapabilityWhenCapabilityExists() throws SQLException, CapabilityDoesNotExistException, FailedToUpdateCapabilityException {
+    void updateCapabilityShouldUpdateCapabilityWhenCapabilityExists()
+            throws SQLException, CapabilityDoesNotExistException, FailedToUpdateCapabilityException {
         int id = 1;
         CapabilityRequest capabilityRequest = new CapabilityRequest("test");
         Capability existingCapability = new Capability(1,"test");

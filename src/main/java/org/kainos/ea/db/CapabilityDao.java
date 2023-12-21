@@ -56,8 +56,8 @@ public class CapabilityDao {
 
         PreparedStatement st = c.prepareStatement(updateStatement);
 
-        st.setString(1,capability.getCapabilityName());
-        st.setInt(2,capabilityID);
+        st.setString(1, capability.getCapabilityName());
+        st.setInt(2, capabilityID);
 
         st.executeUpdate();
     }
