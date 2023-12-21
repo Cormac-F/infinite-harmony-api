@@ -21,9 +21,10 @@ public class JobDao {
 
         Statement st = c.createStatement();
 
-        ResultSet rs = st.executeQuery("SELECT roleID, roleName, Capability.capabilityName \n"
+        ResultSet rs = st.executeQuery("SELECT roleID, roleName, Band.bandName, Capability.capabilityName \n"
                 + "FROM JobRole\n"
                 + "INNER JOIN JobFamily ON JobRole.familyID = JobFamily.familyID\n"
+                + "INNER JOIN Band ON JobRole.bandID = Band.bandID\n"
                 + "INNER JOIN Capability ON JobFamily.capabilityID = Capability.capabilityID\n"
                 + "ORDER BY Capability.capabilityName ASC, roleName ASC");
 
@@ -34,6 +35,7 @@ public class JobDao {
             Job job = new Job(
                     rs.getInt("roleID"),
                     rs.getString("roleName"),
+                    rs.getString("bandName"),
                     rs.getString("capabilityName")
             );
             jobList.add(job);
@@ -58,8 +60,9 @@ public class JobDao {
 
         while (rs.next()) {
             return new Job(
-                    rs.getInt("roleID"),
+
                     rs.getString("roleName"),
+                    rs.getInt("roleID"),
                     rs.getString("specSummary"),
                     rs.getString("sharepointLink")
             );
