@@ -8,6 +8,7 @@ import org.kainos.ea.cli.Capability;
 import org.kainos.ea.cli.CapabilityRequest;
 import org.kainos.ea.client.CapabilityDoesNotExistException;
 import org.kainos.ea.client.FailedToUpdateCapabilityException;
+import org.kainos.ea.client.InvalidCapabilityException;
 import org.kainos.ea.db.CapabilityDao;
 import org.kainos.ea.db.DatabaseConnector;
 import org.kainos.ea.resources.CapabilityController;
@@ -110,7 +111,9 @@ public class CapabilityServiceTest {
 
     @Test
     void updateCapabilityShouldUpdateCapabilityWhenCapabilityExists()
-            throws SQLException, CapabilityDoesNotExistException, FailedToUpdateCapabilityException {
+            throws SQLException, CapabilityDoesNotExistException, FailedToUpdateCapabilityException,
+            InvalidCapabilityException {
+
         int id = 1;
         CapabilityRequest capabilityRequest = new CapabilityRequest("test");
         Capability existingCapability = new Capability(1, "test");

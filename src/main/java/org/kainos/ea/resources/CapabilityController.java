@@ -3,10 +3,7 @@ package org.kainos.ea.resources;
 import io.swagger.annotations.Api;
 import org.kainos.ea.api.CapabilityService;
 import org.kainos.ea.cli.CapabilityRequest;
-import org.kainos.ea.client.CapabilityDoesNotExistException;
-import org.kainos.ea.client.FailedToGetCapabilitiesException;
-import org.kainos.ea.client.FailedToGetCapabilityException;
-import org.kainos.ea.client.FailedToUpdateCapabilityException;
+import org.kainos.ea.client.*;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -56,7 +53,7 @@ public class CapabilityController {
             capabilityService.updateCapability(id, capability);
 
             return Response.ok().build();
-        } catch (CapabilityDoesNotExistException e) {
+        } catch (InvalidCapabilityException | CapabilityDoesNotExistException e) {
             System.err.println(e.getMessage());
 
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
