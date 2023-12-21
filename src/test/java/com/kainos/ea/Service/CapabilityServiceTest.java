@@ -116,17 +116,13 @@ public class CapabilityServiceTest {
 
     @Test
     void updateCapabilityShouldUpdateCapabilityWhenCapabilityExists() throws SQLException, CapabilityDoesNotExistException, FailedToUpdateCapabilityException {
-        // Arrange
         int id = 1;
         CapabilityRequest capabilityRequest = new CapabilityRequest("test");
         Capability existingCapability = new Capability(1,"test");
 
         when(capabilityDao.getCapabilityByID(id)).thenReturn(existingCapability);
 
-        // Act
         capabilityService.updateCapability(id, capabilityRequest);
-
-        // Assert
         verify(capabilityDao, times(1)).updateCapability(eq(id), eq(capabilityRequest));
     }
 
