@@ -32,7 +32,6 @@ import static org.mockito.Mockito.when;
 public class AuthServiceTest {
     @Mock
     private AuthDao authDao;
-    @Mock
     private AuthService authService;
     @Mock
     private AuthController authController;
@@ -41,5 +40,20 @@ public class AuthServiceTest {
     @Mock
     Connection conn;
 
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+    Login login = new Login("username","password");
+
+
+    @Test
+    void loginShouldGenerateTokenWhenValidLoginGiven() throws SQLException, FailedToLoginException, FailedToGenerateTokenException {
+        //when(databaseConnector.getConnection()).thenReturn(conn);
+        when(authDao.validLogin(login)).thenReturn(true);
+        when(authDao.generateToken("username")).thenReturn("Token");
+        String token = authService.login(login);
+        assertEquals("Token", token);
+    }
 
 }
