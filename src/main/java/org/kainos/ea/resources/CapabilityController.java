@@ -57,16 +57,15 @@ public class CapabilityController {
             capabilityService.updateCapability(id, capability);
 
             return Response.ok().build();
-        } catch (InvalidCapabilityException | CapabilityDoesNotExistException e) {
+        } catch (CapabilityDoesNotExistException | InvalidCapabilityException e) {
             System.err.println(e.getMessage());
 
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
-        } catch (FailedToUpdateCapabilityException e) {
+
+        } catch (FailedToUpdateCapabilityException | SQLException e) {
             System.err.println(e.getMessage());
 
             return Response.serverError().build();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
 }

@@ -95,6 +95,7 @@ public class CapabilityServiceTest {
                 () -> capabilityService.updateCapability(id, capabilityRequest));
         verify(capabilityDao, never()).updateCapability(anyInt(), any(CapabilityRequest.class));
     }
+
     @Test
     void updateCapabilityShouldThrowFailedToUpdateCapabilityExceptionWhenSQLExceptionOccurs() throws SQLException {
         int id = 1;
@@ -123,7 +124,6 @@ public class CapabilityServiceTest {
         capabilityService.updateCapability(id, capabilityRequest);
         verify(capabilityDao, times(1)).updateCapability(eq(id), eq(capabilityRequest));
     }
-
 }
 
 

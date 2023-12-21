@@ -49,12 +49,6 @@ public class CapabilityService {
             FailedToUpdateCapabilityException, InvalidCapabilityException, SQLException {
 
         try {
-            String validation = String.valueOf(capabilityValidator.isValidCapabiility(capability));
-
-            if (validation != null) {
-                throw new InvalidCapabilityException(validation);
-            }
-
             Capability capabilityToUpdate;
             capabilityToUpdate = capabilityDao.getCapabilityByID(id);
 
@@ -62,16 +56,19 @@ public class CapabilityService {
                 throw new CapabilityDoesNotExistException();
             }
 
-            capabilityDao.updateCapability(id, capability);
+
+
         } catch (SQLException e) {
             System.err.println(e.getMessage());
 
             throw new FailedToUpdateCapabilityException();
-        } catch (InvalidCapabilityException e) {
-            throw new RuntimeException(e);
         }
+        String validation = String.valueOf(capabilityValidator.isValidCapabiility(capability));
+
+        throw new InvalidCapabilityException(validation);
     }
 }
+
 
 
 
