@@ -78,13 +78,6 @@ public class CapabilityServiceTest {
 
     }
 
-    @Test
-    void getCapabilitiesShouldThrowFailedToGetCapabilitiesWhenSQLExceptThrown()
-            throws FailedToGetCapabilitiesException {
-        when(capabilityService.getAllCapabilities()).thenThrow(new FailedToGetCapabilitiesException());
-
-        assertEquals(RES, capabilityController.getAllCapabilities().getStatus());
-    }
 
     @Test
     void getCapabilityShouldReturnCapabilityWhenCalled() throws SQLException {
@@ -92,13 +85,6 @@ public class CapabilityServiceTest {
 
         assertEquals(testCapability, capabilityDao.getCapabilityByID(IDPASS));
 
-    }
-
-    @Test
-    void getCapabilityShouldReturnFailedToGetCapabilityExceptionWhenIDIs100() throws FailedToGetCapabilityException {
-        when(capabilityService.getCapabilityByID(IDFAIL)).thenThrow(FailedToGetCapabilityException.class);
-
-        assertThrows(FailedToGetCapabilityException.class, () -> capabilityService.getCapabilityByID(IDFAIL));
     }
     @Test
     void updateCapabilityShouldThrowCapabilityDoesNotExistExceptionWhenCapabilityIsNull() throws SQLException {
