@@ -1,9 +1,14 @@
 package org.kainos.ea.api;
 
-import io.swagger.models.auth.In;
 import org.kainos.ea.cli.Capability;
 import org.kainos.ea.cli.CapabilityRequest;
-import org.kainos.ea.client.*;
+import org.kainos.ea.client.InvalidCapabilityException;
+import org.kainos.ea.client.CapabilityValidator;
+import org.kainos.ea.client.FailedToGetCapabilityException;
+import org.kainos.ea.client.FailedToUpdateCapabilityException;
+import org.kainos.ea.client.FailedToGetCapabilitiesException;
+import org.kainos.ea.client.CapabilityDoesNotExistException;
+
 import org.kainos.ea.db.CapabilityDao;
 
 import java.sql.SQLException;
