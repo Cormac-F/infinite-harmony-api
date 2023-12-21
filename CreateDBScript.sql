@@ -947,6 +947,10 @@ VALUES
 (77,'Advising on which methodology or hybrid approach is best suited for the specific client needs. Improve Kainos reputation by building strong client relationships',1102);
 
 
+INSERT INTO Role(RoleID, Name) VALUES
+(1, "Admin"),
+(2, "Employee");
 
-
-
+INSERT INTO User(Username, Password, RoleID) VALUES 
+("admin@kainos.com","Password123!",1),
+("hremp@kainos.com","TestPass!37", 2);
