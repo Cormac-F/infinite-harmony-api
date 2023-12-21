@@ -115,7 +115,7 @@ public class CapabilityServiceTest {
         int id = 1;
         CapabilityRequest capabilityRequest = new CapabilityRequest("test");
 
-        when(capabilityDao.getCapabilityByID(id)).thenReturn(new Capability(12,"people"));
+        when(capabilityDao.getCapabilityByID(id)).thenReturn(new Capability(12, "people"));
         doThrow(SQLException.class).when(capabilityDao).updateCapability(id, capabilityRequest);
 
         assertThrows(FailedToUpdateCapabilityException.class,
@@ -129,7 +129,7 @@ public class CapabilityServiceTest {
             throws SQLException, CapabilityDoesNotExistException, FailedToUpdateCapabilityException {
         int id = 1;
         CapabilityRequest capabilityRequest = new CapabilityRequest("test");
-        Capability existingCapability = new Capability(1,"test");
+        Capability existingCapability = new Capability(1, "test");
 
         when(capabilityDao.getCapabilityByID(id)).thenReturn(existingCapability);
 
