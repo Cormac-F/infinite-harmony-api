@@ -2,12 +2,10 @@ package org.kainos.ea.db;
 
 import org.apache.commons.lang3.time.DateUtils;
 import org.kainos.ea.cli.Login;
+import org.kainos.ea.client.TokenExpiredException;
+import org.mockito.internal.verification.Times;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Date;
 import java.util.UUID;
 
@@ -52,5 +50,26 @@ public class AuthDao
         st.executeUpdate();
 
        return token;
+    }
+
+    public int getRoleIDFromToken(String token) throws SQLException, TokenExpiredException {
+        Connection c = dbc.getConnection();
+        String SelectStatement = "SELECT RoleID, Expiry FROM User JOIN Token USING (Username) WHERE Token = ?";
+
+        PreparedStatement st = c.prepareStatement(SelectStatement);
+        st.setString(1, token);
+
+        ResultSet rs = st.executeQuery();
+
+        while (rs.next()) {
+            Timestamp expiry = rs.getTimestamp("Expiry");
+            if(expiry.after(new Date())) {
+                return rs.getInt("RoleID");
+            } else {
+                throw new TokenExpiredException();
+            }
+        }
+
+    return -1;
     }
 }

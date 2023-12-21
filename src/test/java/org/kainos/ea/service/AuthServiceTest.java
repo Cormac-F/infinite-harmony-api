@@ -30,9 +30,9 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class AuthServiceTest {
-    @Mock
-    private AuthDao authDao;
-    private AuthService authService;
+
+    private AuthDao authDao = Mockito.mock(AuthDao.class);
+    private AuthService authService = new AuthService();
     @Mock
     private AuthController authController;
     @Mock
