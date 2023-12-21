@@ -7,8 +7,6 @@ import org.kainos.ea.api.CapabilityService;
 import org.kainos.ea.cli.Capability;
 import org.kainos.ea.cli.CapabilityRequest;
 import org.kainos.ea.client.CapabilityDoesNotExistException;
-import org.kainos.ea.client.FailedToGetCapabilitiesException;
-import org.kainos.ea.client.FailedToGetCapabilityException;
 import org.kainos.ea.client.FailedToUpdateCapabilityException;
 import org.kainos.ea.db.CapabilityDao;
 import org.kainos.ea.db.DatabaseConnector;
