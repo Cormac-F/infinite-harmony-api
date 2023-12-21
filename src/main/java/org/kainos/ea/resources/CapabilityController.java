@@ -11,6 +11,7 @@ import org.kainos.ea.client.FailedToUpdateCapabilityException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.SQLException;
 
 
 @Api("Job Role API")
@@ -59,6 +60,8 @@ public class CapabilityController {
             System.err.println(e.getMessage());
 
             return Response.serverError().build();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

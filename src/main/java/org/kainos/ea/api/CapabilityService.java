@@ -41,7 +41,7 @@ public class CapabilityService {
         return capability;
     }
 
-    public void updateCapability(int id, CapabilityRequest capability) throws CapabilityDoesNotExistException, FailedToUpdateCapabilityException {
+    public void updateCapability(int id, CapabilityRequest capability) throws CapabilityDoesNotExistException, FailedToUpdateCapabilityException, SQLException {
             Capability capabilityToUpdate;
         try{
             capabilityToUpdate = capabilityDao.getCapabilityByID(id);
