@@ -46,10 +46,10 @@ public class AuthServiceTest {
     }
     Login login = new Login("username","password");
 
+    //TODO: FINISH IMPLEMENTING JOSH'S FIXES
 
     @Test
     void loginShouldGenerateTokenWhenValidLoginGiven() throws SQLException, FailedToLoginException, FailedToGenerateTokenException {
-        //when(databaseConnector.getConnection()).thenReturn(conn);
         when(authDao.validLogin(login)).thenReturn(true);
         when(authDao.generateToken("username")).thenReturn("Token");
         String token = authService.login(login);

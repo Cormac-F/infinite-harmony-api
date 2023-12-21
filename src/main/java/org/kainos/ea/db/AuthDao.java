@@ -15,6 +15,10 @@ public class AuthDao
 {
     private DatabaseConnector dbc = new DatabaseConnector();
 
+    public AuthDao(DatabaseConnector dbc) {
+        this.dbc = dbc;
+    }
+
     public boolean validLogin(Login login) {
         try (Connection c = dbc.getConnection()) {
             String getLogin = "SELECT Password FROM `User` WHERE Username = ? ";
