@@ -1,5 +1,7 @@
 package org.kainos.ea.service;
 
+import io.dropwizard.auth.Auth;
+import org.checkerframework.checker.units.qual.A;
 import org.kainos.ea.cli.Login;
 import org.kainos.ea.db.AuthDao;
 import org.kainos.ea.api.AuthService;
@@ -31,12 +33,14 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class AuthServiceTest {
     @Mock
-    private AuthDao authDao;
-    private AuthService authService;
+    private AuthDao authDao = Mockito.mock(AuthDao.class);
     @Mock
     private AuthController authController;
     @Mock
     DatabaseConnector databaseConnector = Mockito.mock(DatabaseConnector.class);
+
+
+    private AuthService authService = new AuthService(authDao, databaseConnector);
     @Mock
     Connection conn;
 
@@ -47,6 +51,8 @@ public class AuthServiceTest {
     Login login = new Login("username","password");
 
     //TODO: FINISH IMPLEMENTING JOSH'S FIXES
+    //TODO: this involves something to do with following shawn ganley's code on sams repo lol
+
 
     @Test
     void loginShouldGenerateTokenWhenValidLoginGiven() throws SQLException, FailedToLoginException, FailedToGenerateTokenException {
