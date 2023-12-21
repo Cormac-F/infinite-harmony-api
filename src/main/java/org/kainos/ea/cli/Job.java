@@ -16,6 +16,7 @@ public class Job {
     }
 
     public void setCapabilityName(String capabilityName) {
+
         this.capabilityName = capabilityName;
     }
 
@@ -35,9 +36,17 @@ public class Job {
         this.roleName = roleName;
     }
 
+
+    public String getCapabilityName() {
+        return capabilityName;
+    }
+
+    public void setCapabilityName(String capabilityName) {
+        this.capabilityName = capabilityName;
+    }
+
     private String specSummary;
     private String sharepointLink;
-
 
     public Job(int roleID, String roleName, String specSummary, String sharepointLink) {
         this.roleID = roleID;
@@ -61,5 +70,5 @@ public class Job {
     public void setSharepointLink(String sharepointLink) {
         this.sharepointLink = sharepointLink;
     }
-
 }
+

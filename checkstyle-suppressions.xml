@@ -11,4 +11,5 @@
     <suppress checks="FinalParameters" files="."/>
     <suppress checks="HideUtilityClassConstructor" files="."/>
     <suppress checks="VisibilityModifier" files="."/>
+    <suppress checks="MagicNumber" files="test/"/>
 </suppressions>
