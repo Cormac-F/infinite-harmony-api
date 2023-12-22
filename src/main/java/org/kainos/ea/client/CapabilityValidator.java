@@ -4,10 +4,11 @@ import org.kainos.ea.cli.CapabilityRequest;
 
 public class CapabilityValidator {
     private final int maxLength = 100;
-    public boolean isValidCapabiility(CapabilityRequest capability) {
+
+    public String isValidCapability(CapabilityRequest capability) {
         if (capability.getCapabilityName().length() > maxLength) {
-            return false;
+            return "Capability name is too long";
         }
-        return true;
+        return null;
     }
 }
