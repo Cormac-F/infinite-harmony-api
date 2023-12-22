@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class AuthDao
 {
-    private DatabaseConnector dbc = new DatabaseConnector();
+    private DatabaseConnector dbc;
 
     public AuthDao(DatabaseConnector dbc) {
         this.dbc = dbc;

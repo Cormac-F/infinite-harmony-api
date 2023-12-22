@@ -25,14 +25,13 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
 public class AuthServiceTest {
-    @Mock
+
     private AuthDao authDao = Mockito.mock(AuthDao.class);
     @Mock
     private AuthController authController;
@@ -60,6 +59,21 @@ public class AuthServiceTest {
         when(authDao.generateToken("username")).thenReturn("Token");
         String token = authService.login(login);
         assertEquals("Token", token);
+    }
+
+    @Test
+    void loginShouldThrowFailedToLoginExceptionWhenInvalidLoginGiven() {
+        when(authDao.validLogin(login)).thenReturn(false);
+        assertThrows(FailedToLoginException.class,
+                () -> authService.login(login));
+    }
+
+    @Test
+    void loginShouldThrowTokenExceptWhenGenerateTokenFails() throws SQLException, FailedToGenerateTokenException {
+        when(authDao.validLogin(login)).thenReturn(true);
+        when(authDao.generateToken("username")).thenThrow(SQLException.class);
+        assertThrows(FailedToGenerateTokenException.class,
+                () -> authService.login(login));
     }
 
 }
