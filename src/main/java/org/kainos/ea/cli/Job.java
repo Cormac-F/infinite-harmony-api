@@ -5,12 +5,20 @@ public class Job {
     private String roleName;
     private String bandName;
     private String capabilityName;
+    private String specSummary;
+    private String sharepointLink;
 
-    public Job(int roleID, String roleName, String capabilityName) {
+    public Job(int roleID, String roleName, String bandName, String capabilityName) {
         this.roleID = roleID;
         this.roleName = roleName;
         this.bandName = bandName;
         this.capabilityName = capabilityName;
+    }
+    public Job(String roleName, int roleID, String specSummary, String sharepointLink) {
+        this.roleID = roleID;
+        this.roleName = roleName;
+        this.specSummary = specSummary;
+        this.sharepointLink = sharepointLink;
     }
 
     public int getRoleID() {
@@ -43,16 +51,6 @@ public class Job {
 
     public void setCapabilityName(String capabilityName) {
         this.capabilityName = capabilityName;
-    }
-
-    private String specSummary;
-    private String sharepointLink;
-
-    public Job(int roleID, String roleName, String specSummary, String sharepointLink) {
-        this.roleID = roleID;
-        this.roleName = roleName;
-        this.specSummary = specSummary;
-        this.sharepointLink = sharepointLink;
     }
 
     public String getSpecSummary() {
