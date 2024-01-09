@@ -2,6 +2,7 @@ package org.kainos.ea.resources;
 
 import io.swagger.annotations.Api;
 import org.kainos.ea.api.CapabilityService;
+import org.kainos.ea.cli.Capability;
 import org.kainos.ea.cli.CapabilityRequest;
 import org.kainos.ea.client.FailedToUpdateCapabilityException;
 import org.kainos.ea.client.FailedToGetCapabilityException;
@@ -41,7 +42,10 @@ public class CapabilityController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCapabilityByID(@PathParam("id") int id) {
         try {
-            return Response.ok(capabilityService.getCapabilityByID(id)).build();
+            Capability capability = capabilityService.getCapabilityByID(id);
+            if (capability == null)
+                return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.ok().build();
         } catch (FailedToGetCapabilityException | CapabilityDoesNotExistException e) {
             System.err.println(e.getMessage());
 
