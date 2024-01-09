@@ -5,6 +5,8 @@ import org.kainos.ea.api.JobService;
 import org.kainos.ea.client.FailedToGetAllJobsException;
 import org.kainos.ea.client.FailedToGetJobSpecException;
 import org.kainos.ea.client.JobSpecDoesNotExistException;
+import org.kainos.ea.db.DatabaseConnector;
+import org.kainos.ea.db.JobDao;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,7 +19,9 @@ import javax.ws.rs.core.Response;
 @Api("Job Role API")
 @Path("/api")
 public class JobController {
-    private JobService jobService = new JobService();
+    DatabaseConnector databaseConnector = new DatabaseConnector();
+    JobDao jobDao = new JobDao(databaseConnector);
+    private JobService jobService = new JobService(jobDao, databaseConnector);
 
     @GET
     @Path("/job-roles")
