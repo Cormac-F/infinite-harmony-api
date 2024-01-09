@@ -43,8 +43,7 @@ public class BandController {
     public Response getBandByID(@PathParam("id") int id) {
         try {
             return Response.ok(bandService.getBandByID(id)).build();
-        }
-        catch (BandDoesNotExistException e) {
+        } catch (BandDoesNotExistException e) {
             System.err.println(e.getMessage());
 
             return Response.status(Response.Status.BAD_REQUEST).build();
