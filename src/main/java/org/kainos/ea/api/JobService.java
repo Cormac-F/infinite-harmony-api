@@ -13,8 +13,8 @@ import java.util.List;
 
 public class JobService {
     private JobDao jobDao;
-    public JobService(JobDao jd) {
-        jobDao = jd;
+    public JobService(JobDao jobDao) {
+        this.jobDao = jobDao;
     }
 
 
