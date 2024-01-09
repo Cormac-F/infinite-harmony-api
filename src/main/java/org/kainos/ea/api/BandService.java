@@ -14,10 +14,8 @@ public class BandService {
 
     private BandDao bandDao;
     DatabaseConnector databaseConnector;
-    public BandService(BandDao bd, DatabaseConnector dbc) {
+    public BandService(BandDao bd) {
         bandDao = bd;
-        databaseConnector = dbc;
-
     }
 
 

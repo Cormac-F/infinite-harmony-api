@@ -22,7 +22,7 @@ public class BandController {
     DatabaseConnector databaseConnector = new DatabaseConnector();
     BandDao bandDao = new BandDao(databaseConnector);
 
-    private BandService bandService = new BandService(bandDao, databaseConnector);
+    private BandService bandService = new BandService(bandDao);
 
     @GET
     @Path("/band-levels")

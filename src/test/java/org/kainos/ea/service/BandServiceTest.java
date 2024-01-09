@@ -30,7 +30,7 @@ public class BandServiceTest {
     private BandDao bandDao = Mockito.mock(BandDao.class);
     @Mock
     DatabaseConnector databaseConnector = Mockito.mock(DatabaseConnector.class);
-    private BandService bandService = new BandService(bandDao, databaseConnector);
+    private BandService bandService = new BandService(bandDao);
 
     Band testBand = new Band(100, "Test", 1);
 
