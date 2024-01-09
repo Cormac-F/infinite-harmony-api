@@ -12,7 +12,12 @@ import java.util.List;
 
 
 public class JobService {
-    private JobDao jobDao = new JobDao();
+    private JobDao jobDao;
+    public JobService(JobDao jobDao) {
+        this.jobDao = jobDao;
+    }
+
+
 
     public List<Job> getAllJobs() throws FailedToGetAllJobsException {
         List<Job> jobList;
