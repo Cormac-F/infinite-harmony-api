@@ -5,7 +5,6 @@ import org.kainos.ea.client.BandDoesNotExistException;
 import org.kainos.ea.client.FailedToGetBandException;
 import org.kainos.ea.client.FailedToGetBandsException;
 import org.kainos.ea.db.BandDao;
-import org.kainos.ea.db.DatabaseConnector;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -13,7 +12,6 @@ import java.util.List;
 public class BandService {
 
     private BandDao bandDao;
-    DatabaseConnector databaseConnector;
     public BandService(BandDao bd) {
         bandDao = bd;
     }
