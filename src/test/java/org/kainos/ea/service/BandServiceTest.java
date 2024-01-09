@@ -1,90 +1,83 @@
 package org.kainos.ea.service;
 
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.kainos.ea.api.BandService;
 import org.kainos.ea.cli.Band;
+import org.kainos.ea.client.BandDoesNotExistException;
 import org.kainos.ea.client.FailedToGetBandException;
 import org.kainos.ea.client.FailedToGetBandsException;
 import org.kainos.ea.db.BandDao;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.kainos.ea.db.DatabaseConnector;
-import org.kainos.ea.resources.BandController;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
+
 
 @ExtendWith(MockitoExtension.class)
 public class BandServiceTest {
-    @Mock
     private BandDao bandDao = Mockito.mock(BandDao.class);
     @Mock
-    private BandService bandService;
-    @InjectMocks
-    private BandController bandController;
-    @Mock
     DatabaseConnector databaseConnector = Mockito.mock(DatabaseConnector.class);
-    @Mock
-    Connection conn;
+    private BandService bandService = new BandService(bandDao, databaseConnector);
+
+    Band testBand = new Band(100, "Test", 1);
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-    Band testBand = new Band("Test", 1);
-    static final int RES = 500;
-    static final int IDFAIL = 9;
-    static final int IDPASS = 1;
+
 
     @Test
-    void getBandsShouldReturnBandsWhenDaoReturnsBands() throws SQLException, FailedToGetBandsException {
-        List<Band> listBands = Arrays.asList(
+    void getBandsShouldReturnBandWhenCalled() throws FailedToGetBandsException, SQLException {
+        List<Band> bandList = Arrays.asList(
                 Mockito.mock(Band.class),
                 Mockito.mock(Band.class)
         );
+        Mockito.when(bandDao.getAllBands()).thenReturn(bandList);
+        assertEquals(bandList, bandService.getBands());
+    }
+    @Test
+    void getBandsShouldThrowFailedToGetBandsWhenSQLExcept() throws FailedToGetBandsException, SQLException {
+        Mockito.when(bandDao.getAllBands()).thenThrow(SQLException.class);
+        assertThrows(FailedToGetBandsException.class,
+                () -> bandService.getBands());
+    }
 
-        when(bandDao.getAllBands()).thenReturn(listBands);
-        List<Band> returnedVals = bandDao.getAllBands();
-
-        assertEquals(listBands, returnedVals);
+    @Test
+    void getBandByIDShouldReturnBandWhenIDIs100() throws BandDoesNotExistException, FailedToGetBandException,
+            SQLException {
+        Mockito.when(bandDao.getBandByID(100)).thenReturn(testBand);
+        assertEquals(testBand, bandService.getBandByID(100));
 
     }
 
     @Test
-    void getBandsShouldThrowFailedToGetBandsWhenSQLExceptThrown() throws FailedToGetBandsException {
-        when(bandService.getBands()).thenThrow(new FailedToGetBandsException());
-
-        assertEquals(RES, bandController.getAllBands().getStatus());
+    void getBandByIDShouldThrowBandDoesNotExistExceptWhenIDIs1() throws BandDoesNotExistException,
+            FailedToGetBandException, SQLException {
+        Mockito.when(bandDao.getBandByID(1)).thenReturn(null);
+        assertThrows(BandDoesNotExistException.class,
+                () -> bandService.getBandByID(1));
     }
 
     @Test
-    void getBandShouldReturnBandWhenCalled() throws SQLException {
-        Mockito.when(bandDao.getBandByID(IDPASS)).thenReturn(testBand);
-
-        assertEquals(testBand, bandDao.getBandByID(IDPASS));
-
+    void getBandByIDShouldThrowFailedToGetExceptWhenSQLExceptionThrown() throws BandDoesNotExistException,
+    FailedToGetBandException, SQLException {
+        Mockito.when(bandDao.getBandByID(1)).thenThrow(SQLException.class);
+        assertThrows(FailedToGetBandException.class,
+                () -> bandService.getBandByID(1));
     }
-
-    @Test
-    void getBandShouldReturnFailedToGetBandExceptionWhenIDIs9() throws FailedToGetBandException, SQLException {
-        Mockito.when(bandService.getBandByID(IDFAIL)).thenThrow(FailedToGetBandException.class);
-
-        assertThrows(FailedToGetBandException.class, () -> bandService.getBandByID(IDFAIL));
-
-    }
-
 
 }

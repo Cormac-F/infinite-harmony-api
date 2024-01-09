@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BandDao {
-    private static Connection conn;
-    private DatabaseConnector databaseConnector = new DatabaseConnector();
+    private DatabaseConnector databaseConnector;
+    public BandDao(DatabaseConnector dbc) {
+        databaseConnector = dbc;
+    }
 
     public List<Band> getAllBands() throws SQLException {
         Connection c = databaseConnector.getConnection();
