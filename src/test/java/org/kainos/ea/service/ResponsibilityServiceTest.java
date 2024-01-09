@@ -1,6 +1,5 @@
 package org.kainos.ea.service;
 
-import org.kainos.ea.api.BandService;
 import org.kainos.ea.api.ResponsibilityService;
 import org.kainos.ea.cli.Responsibility;
 import org.kainos.ea.client.FailedToGetRoleResponsibilityException;
@@ -10,11 +9,9 @@ import org.kainos.ea.db.ResponsibilityDao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.kainos.ea.db.DatabaseConnector;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.Mock;
 
 import java.sql.SQLException;
 import java.util.Arrays;
