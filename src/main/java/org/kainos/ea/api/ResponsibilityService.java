@@ -9,8 +9,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ResponsibilityService {
+    private ResponsibilityDao responsibilityDao;
 
-    private ResponsibilityDao responsibilityDao = new ResponsibilityDao();
+    public ResponsibilityService(ResponsibilityDao responsibilityDao) {
+        this.responsibilityDao = responsibilityDao;
+    }
 
     public List<Responsibility> getRoleResponsibilityById(int id) throws FailedToGetRoleResponsibilityException,
             RoleResponsibilityDoesNotExistException {
@@ -18,7 +21,7 @@ public class ResponsibilityService {
         try {
             responsibilitiesList = responsibilityDao.getRoleResponsibilityById(id);
 
-            if (responsibilitiesList.size() == 0) {
+            if (responsibilitiesList == null) {
                 throw new RoleResponsibilityDoesNotExistException();
             }
 

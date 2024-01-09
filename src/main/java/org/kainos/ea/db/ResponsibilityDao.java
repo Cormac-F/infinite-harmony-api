@@ -16,29 +16,26 @@ public class ResponsibilityDao {
     private DatabaseConnector databaseConnector = new DatabaseConnector();
 
     public List<Responsibility> getRoleResponsibilityById(int id) throws SQLException {
+
+        Connection c = databaseConnector.getConnection();
+
         String query = "SELECT rt.responsibilityName FROM Responsibility rt "
                 + "JOIN JobRole jr ON rt.roleID = jr.roleID WHERE jr.roleID = ?";
 
+        PreparedStatement ps = c.prepareStatement(query);
+        ps.setInt(1, id);
+
+        ResultSet rs = ps.executeQuery();
+
         List<Responsibility> responsibilitiesList = new ArrayList<>();
 
-        try (Connection c = databaseConnector.getConnection();
-             PreparedStatement ps = c.prepareStatement(query)) {
-
-            ps.setInt(1, id);
-
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    Responsibility responsibility = new Responsibility();
-                    responsibility.setResponsibilityName(rs.getString("responsibilityName"));
-                    responsibilitiesList.add(responsibility);
-                }
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        while(rs.next()) {
+            Responsibility res = new Responsibility(rs.getString("responsibilityName"));
+            responsibilitiesList.add(res);
         }
-
         return responsibilitiesList;
+
+
     }
 
 
