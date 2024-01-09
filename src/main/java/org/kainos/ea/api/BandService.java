@@ -12,8 +12,8 @@ import java.util.List;
 public class BandService {
 
     private BandDao bandDao;
-    public BandService(BandDao bd) {
-        bandDao = bd;
+    public BandService(BandDao bandDao) {
+        this.bandDao = bandDao;
     }
 
 
