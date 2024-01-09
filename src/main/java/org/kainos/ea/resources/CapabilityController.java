@@ -43,8 +43,10 @@ public class CapabilityController {
     public Response getCapabilityByID(@PathParam("id") int id) {
         try {
             Capability capability = capabilityService.getCapabilityByID(id);
-            if (capability == null)
-                return Response.status(Response.Status.NOT_FOUND).build();
+            {
+                if (capability == null)
+                    return Response.status(Response.Status.NOT_FOUND).build();
+            }
             return Response.ok().build();
         } catch (FailedToGetCapabilityException | CapabilityDoesNotExistException e) {
             System.err.println(e.getMessage());
