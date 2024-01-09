@@ -31,7 +31,7 @@ public class JobServiceTest {
     @Mock
     DatabaseConnector databaseConnector = Mockito.mock(DatabaseConnector.class);
 
-    private JobService jobService = new JobService(jobDao, databaseConnector);
+    private JobService jobService = new JobService(jobDao);
 
     Job testJob = new Job(1, "TestJob", "Band", "Capability");
     static final int ID = 1;

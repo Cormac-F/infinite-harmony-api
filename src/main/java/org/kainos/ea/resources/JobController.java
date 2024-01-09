@@ -21,7 +21,7 @@ import javax.ws.rs.core.Response;
 public class JobController {
     DatabaseConnector databaseConnector = new DatabaseConnector();
     JobDao jobDao = new JobDao(databaseConnector);
-    private JobService jobService = new JobService(jobDao, databaseConnector);
+    private JobService jobService = new JobService(jobDao);
 
     @GET
     @Path("/job-roles")

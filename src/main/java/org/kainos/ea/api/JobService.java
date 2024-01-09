@@ -14,9 +14,7 @@ import java.util.List;
 
 public class JobService {
     private JobDao jobDao;
-    private DatabaseConnector databaseConnector;
-    public JobService(JobDao jd, DatabaseConnector dbc) {
-        databaseConnector = dbc;
+    public JobService(JobDao jd) {
         jobDao = jd;
     }
 
