@@ -15,17 +15,13 @@ import org.kainos.ea.api.JobService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.kainos.ea.db.DatabaseConnector;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,14 +33,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class JobServiceTest {
     private JobDao jobDao = Mockito.mock(JobDao.class);
     @Mock
-    private JobController jobController;
-    @Mock
     DatabaseConnector databaseConnector = Mockito.mock(DatabaseConnector.class);
 
     private JobService jobService = new JobService(jobDao, databaseConnector);
 
-    @Mock
-    Connection conn;
     Job testJob = new Job(1, "TestJob", "Band", "Capability");
     static final int ID = 1;
 
@@ -63,6 +55,7 @@ public class JobServiceTest {
         );
         Mockito.when(jobDao.getAllJobs()).thenReturn(jobList);
         assertEquals(jobList, jobService.getAllJobs());
+
     }
 
     @Test
