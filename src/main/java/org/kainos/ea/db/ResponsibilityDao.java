@@ -29,7 +29,7 @@ public class ResponsibilityDao {
 
         List<Responsibility> responsibilitiesList = new ArrayList<>();
 
-        while(rs.next()) {
+        while (rs.next()) {
             Responsibility res = new Responsibility(rs.getString("responsibilityName"));
             responsibilitiesList.add(res);
         }
