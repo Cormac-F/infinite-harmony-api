@@ -7,7 +7,6 @@ import org.kainos.ea.client.CapabilityValidator;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 public class CapabilityValidatorTest {
     CapabilityValidator capabilityValidator = new CapabilityValidator();
 

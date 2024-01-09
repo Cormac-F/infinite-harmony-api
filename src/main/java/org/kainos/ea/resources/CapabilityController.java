@@ -16,7 +16,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.sql.SQLException;
 
 
 @Api("Job Role API")
@@ -43,7 +42,7 @@ public class CapabilityController {
     public Response getCapabilityByID(@PathParam("id") int id) {
         try {
             return Response.ok(capabilityService.getCapabilityByID(id)).build();
-        } catch (FailedToGetCapabilityException e) {
+        } catch (FailedToGetCapabilityException | CapabilityDoesNotExistException e) {
             System.err.println(e.getMessage());
 
             return Response.serverError().build();
@@ -62,7 +61,7 @@ public class CapabilityController {
 
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
 
-        } catch (FailedToUpdateCapabilityException | SQLException e) {
+        } catch (FailedToUpdateCapabilityException e) {
             System.err.println(e.getMessage());
 
             return Response.serverError().build();

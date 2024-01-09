@@ -2,12 +2,7 @@ package org.kainos.ea.api;
 
 import org.kainos.ea.cli.Capability;
 import org.kainos.ea.cli.CapabilityRequest;
-import org.kainos.ea.client.InvalidCapabilityException;
-import org.kainos.ea.client.CapabilityValidator;
-import org.kainos.ea.client.FailedToGetCapabilityException;
-import org.kainos.ea.client.FailedToUpdateCapabilityException;
-import org.kainos.ea.client.FailedToGetCapabilitiesException;
-import org.kainos.ea.client.CapabilityDoesNotExistException;
+import org.kainos.ea.client.*;
 
 import org.kainos.ea.db.CapabilityDao;
 
@@ -32,21 +27,24 @@ public class CapabilityService {
         return capabilityList;
 
     }
-    public Capability getCapabilityByID(int id) throws FailedToGetCapabilityException {
-        Capability capability;
+    public Capability getCapabilityByID(int id) throws FailedToGetCapabilityException, CapabilityDoesNotExistException {
         try {
-            capability = capabilityDao.getCapabilityByID(id);
+            Capability capability = capabilityDao.getCapabilityByID(id);
 
+            if (capability == null) {
+                throw new CapabilityDoesNotExistException();
+            }
+
+            return capability;
         } catch (SQLException e) {
             System.err.println(e.getMessage());
 
             throw new FailedToGetCapabilityException();
         }
-        return capability;
     }
 
     public void updateCapability(int id, CapabilityRequest capability) throws CapabilityDoesNotExistException,
-            FailedToUpdateCapabilityException, InvalidCapabilityException, SQLException {
+            FailedToUpdateCapabilityException, InvalidCapabilityException {
 
         try {
             String validation = capabilityValidator.isValidCapability(capability);
