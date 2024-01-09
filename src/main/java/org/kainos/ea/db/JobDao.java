@@ -13,7 +13,11 @@ import java.util.List;
 
 public class JobDao {
     private static Connection conn;
-    private DatabaseConnector databaseConnector = new DatabaseConnector();
+    private DatabaseConnector databaseConnector;
+
+    public JobDao(DatabaseConnector dbc) {
+        databaseConnector = dbc;
+    }
 
 
     public List<Job> getAllJobs() throws SQLException {

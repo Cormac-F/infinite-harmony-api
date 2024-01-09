@@ -4,6 +4,7 @@ import org.kainos.ea.cli.Job;
 import org.kainos.ea.client.FailedToGetAllJobsException;
 import org.kainos.ea.client.FailedToGetJobSpecException;
 import org.kainos.ea.client.JobSpecDoesNotExistException;
+import org.kainos.ea.db.DatabaseConnector;
 import org.kainos.ea.db.JobDao;
 
 
@@ -12,7 +13,14 @@ import java.util.List;
 
 
 public class JobService {
-    private JobDao jobDao = new JobDao();
+    private JobDao jobDao;
+    private DatabaseConnector databaseConnector;
+    public JobService(JobDao jd, DatabaseConnector dbc) {
+        databaseConnector = dbc;
+        jobDao = jd;
+    }
+
+
 
     public List<Job> getAllJobs() throws FailedToGetAllJobsException {
         List<Job> jobList;
