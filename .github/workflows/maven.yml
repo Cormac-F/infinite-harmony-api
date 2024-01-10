@@ -21,7 +21,7 @@ jobs:
         run: mvn -B clean install -DskipTests
 
       - name: Run linter
-        run: mvn checkstyle:check
+        run: mvn checkstyle:check -e -no-transfer-progress
 
       - name: Run tests
         env:
