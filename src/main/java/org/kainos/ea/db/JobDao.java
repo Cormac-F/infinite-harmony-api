@@ -16,17 +16,13 @@ public class JobDao {
     private static Connection conn;
     private DatabaseConnector databaseConnector;
 
-    public JobDao(DatabaseConnector dbc) {
-        databaseConnector = dbc;
-    }
-
 
     public List<Job> getAllJobs() throws SQLException {
         Connection c = databaseConnector.getConnection();
 
         String query = "SELECT roleID, roleName, specSummary, sharepointLink FROM JobRole WHERE roleID = ?";
-        ps = c.prepareStatement(query);
-        ps.setInt(1, id);
+        PreparedStatement ps = c.prepareStatement(query);
+//        ps.setInt(1, id);
 
         Statement st = c.createStatement();
 
@@ -83,18 +79,12 @@ public class JobDao {
         Connection c = databaseConnector.getConnection();
 
         String updateStatement = "UPDATE JobRole\n "
-                + // checkstyle
-                "SET roleName = ?,\n "
-                +
-                "bandID = ?,\n "
-                +
-                "familyID = ?,\n "
-                +
-                "specSummary = ?,\n "
-                +
-                "sharepointLink = ?\n "
-                +
-                "WHERE roleID = ?;";
+                + "SET roleName = ?,\n "
+                +"bandID = ?,\n "
+                + "familyID = ?,\n "
+                + "specSummary = ?,\n "
+                + "sharepointLink = ?\n "
+                + "WHERE roleID = ?;";
 
         PreparedStatement st = c.prepareStatement(updateStatement);
 

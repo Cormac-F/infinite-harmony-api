@@ -6,10 +6,8 @@ public class Job {
     private String specSummary;
     private String sharepointLink;
     private String capabilityName;
-    private String specSummary;
-    private String sharepointLink;
 
-    public Job(int roleID, String roleName, String bandName, String capabilityName) {
+    public Job(int roleID, String roleName, String capabilityName) {
         this.roleID = roleID;
         this.roleName = roleName;
         this.capabilityName = capabilityName;

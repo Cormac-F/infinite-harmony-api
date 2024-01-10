@@ -24,7 +24,7 @@ import javax.ws.rs.core.Response;
 @Path("/api")
 public class JobController {
     DatabaseConnector databaseConnector = new DatabaseConnector();
-    JobDao jobDao = new JobDao(databaseConnector);
+    JobDao jobDao = new JobDao();
     private JobService jobService = new JobService(jobDao);
 
     @GET
@@ -56,10 +56,6 @@ public class JobController {
             System.err.println(e.getMessage());
 
             return Response.status(Response.Status.BAD_REQUEST).build();
-        }
-    }
-
-            return Response.serverError().build();
         }
     }
 
