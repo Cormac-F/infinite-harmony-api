@@ -6,7 +6,6 @@ import org.kainos.ea.cli.Login;
 import org.kainos.ea.client.FailedToGenerateTokenException;
 import org.kainos.ea.client.FailedToLoginException;
 import org.kainos.ea.db.AuthDao;
-import org.kainos.ea.db.DatabaseConnector;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -17,10 +16,8 @@ import javax.ws.rs.core.Response;
 @Api ("Auth API")
 @Path("/api")
 public class AuthController {
-
-    DatabaseConnector databaseConnector = new DatabaseConnector();
-    AuthDao authDao = new AuthDao(databaseConnector);
-    private AuthService authService = new AuthService(authDao, databaseConnector);
+    AuthDao authDao = new AuthDao();
+    private AuthService authService = new AuthService(authDao);
 
     @POST
     @Path("/login")
@@ -31,7 +28,7 @@ public class AuthController {
         } catch (FailedToLoginException e) {
             System.err.println(e.getMessage());
 
-            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         } catch (FailedToGenerateTokenException e) {
             System.err.println(e.getMessage());
 

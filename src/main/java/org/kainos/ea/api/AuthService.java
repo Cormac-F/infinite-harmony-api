@@ -14,10 +14,8 @@ import java.sql.SQLException;
 public class AuthService {
 
     private AuthDao authDao;
-    private DatabaseConnector databaseConnector;
-    public AuthService(AuthDao authDao, DatabaseConnector databaseConnector) {
+    public AuthService(AuthDao authDao) {
         this.authDao = authDao;
-        this.databaseConnector = databaseConnector;
     }
 
 

@@ -13,14 +13,11 @@ import java.util.UUID;
 
 public class AuthDao
 {
-    private DatabaseConnector dbc;
+    private DatabaseConnector databaseConnector = new DatabaseConnector();
 
-    public AuthDao(DatabaseConnector dbc) {
-        this.dbc = dbc;
-    }
 
     public boolean validLogin(Login login) {
-        try (Connection c = dbc.getConnection()) {
+        try (Connection c = databaseConnector.getConnection()) {
             String getLogin = "SELECT Password FROM `User` WHERE Username = ? ";
             PreparedStatement st = c.prepareStatement(getLogin, Statement.RETURN_GENERATED_KEYS);
 
@@ -43,7 +40,7 @@ public class AuthDao
         String token = UUID.randomUUID().toString();
         Date expiry = DateUtils.addHours(new Date(), 8);
 
-        Connection c = dbc.getConnection();
+        Connection c = databaseConnector.getConnection();
 
         String insertStatement = "INSERT INTO Token (Username, Token, Expiry) VALUES (?, ?, ?);";
 
