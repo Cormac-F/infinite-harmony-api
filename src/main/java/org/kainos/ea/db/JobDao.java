@@ -13,10 +13,10 @@ import java.util.List;
 
 
 public class JobDao {
-    private static Connection conn;
     private DatabaseConnector databaseConnector;
 
     public JobDao(DatabaseConnector databaseConnector) {
+        this.databaseConnector = databaseConnector;
     }
 
 
