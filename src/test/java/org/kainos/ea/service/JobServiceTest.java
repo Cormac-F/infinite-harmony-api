@@ -6,7 +6,6 @@ import org.kainos.ea.client.FailedToGetJobSpecException;
 import org.kainos.ea.client.JobSpecDoesNotExistException;
 import org.kainos.ea.cli.Job;
 import org.kainos.ea.db.JobDao;
-import org.kainos.ea.db.DatabaseConnector;
 import org.kainos.ea.api.JobService;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +14,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.Mock;
 
 import java.sql.SQLException;
 import java.util.Arrays;
