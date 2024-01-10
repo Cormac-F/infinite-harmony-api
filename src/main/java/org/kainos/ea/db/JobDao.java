@@ -29,9 +29,9 @@ public class JobDao {
 
         Statement st = c.createStatement();
 
-        ResultSet rs = st.executeQuery("SELECT roleID, roleName, Band.bandID, JobFamily.familyID, " +
-                "Band.bandName, JobRole.specSummary, JobRole.sharepointLink, " +
-                "Band.bandName, Capability.capabilityName \n"
+        ResultSet rs = st.executeQuery("SELECT roleID, roleName, Band.bandID, JobFamily.familyID, "
+                + "Band.bandName, JobRole.specSummary, JobRole.sharepointLink, "
+                + "Band.bandName, Capability.capabilityName \n"
                 + "FROM JobRole\n"
                 + "INNER JOIN JobFamily ON JobRole.familyID = JobFamily.familyID\n"
                 + "INNER JOIN Band ON JobRole.bandID = Band.bandID\n"
@@ -65,9 +65,9 @@ public class JobDao {
         ResultSet rs = null;
 
 
-        String query = "SELECT roleID, roleName, Band.bandID, JobFamily.familyID, " +
-                "Band.bandName, JobRole.specSummary, JobRole.sharepointLink, Band.bandName, " +
-                "Capability.capabilityName FROM JobRole WHERE roleID = ?";
+        String query = "SELECT roleID, roleName, Band.bandID, JobFamily.familyID, "
+                + "Band.bandName, JobRole.specSummary, JobRole.sharepointLink, Band.bandName, "
+                + "Capability.capabilityName FROM JobRole WHERE roleID = ?";
         ps = c.prepareStatement(query);
         ps.setInt(1, id);
 
