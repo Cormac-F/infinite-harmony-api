@@ -3,11 +3,8 @@ package org.kainos.ea.cli;
 public class Job {
     private int roleID;
     private String roleName;
-
-    public Job(int roleID, String roleName) {
-        this.roleID = roleID;
-        this.roleName = roleName;
-    }
+    private String specSummary;
+    private String sharepointLink;
 
     public int getRoleID() {
         return roleID;
@@ -25,9 +22,10 @@ public class Job {
         this.roleName = roleName;
     }
 
-    private String specSummary;
-    private String sharepointLink;
-
+    public Job(int roleID, String roleName) {
+        this.roleID = roleID;
+        this.roleName = roleName;
+    }
 
     public Job(int roleID, String roleName, String specSummary, String sharepointLink) {
         this.roleID = roleID;

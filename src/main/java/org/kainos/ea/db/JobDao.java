@@ -1,6 +1,7 @@
 package org.kainos.ea.db;
 
 import org.kainos.ea.cli.Job;
+import org.kainos.ea.cli.JobRequest;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +22,6 @@ public class JobDao {
         PreparedStatement ps = null;
 
         ResultSet rs = null;
-
 
         String query = "SELECT roleID, roleName, specSummary, sharepointLink FROM JobRole WHERE roleID = ?";
         ps = c.prepareStatement(query);
@@ -59,5 +59,44 @@ public class JobDao {
         }
 
         return jobList;
+    }
+
+    public void updateJob(int id, JobRequest job) throws SQLException {
+        Connection c = databaseConnector.getConnection();
+
+        String updateStatement = "UPDATE JobRole\n "
+                + // checkstyle
+                "SET roleName = ?,\n "
+                +
+                "bandID = ?,\n "
+                +
+                "familyID = ?,\n "
+                +
+                "specSummary = ?,\n "
+                +
+                "sharepointLink = ?\n "
+                +
+                "WHERE roleID = ?;";
+
+        PreparedStatement st = c.prepareStatement(updateStatement);
+
+        st.setString(1, job.getRoleName());
+        st.setInt(2, job.getBandID());
+        st.setInt(3, job.getFamilyID());
+        st.setString(4, job.getSpecSummary());
+        st.setString(5, job.getSharepointLink());
+        st.setInt(6, id);
+
+        st.executeUpdate();
+
+        String updateResponsibility = "INSERT INTO Responsibility_JobRole(responsibilityID, roleID) VALUES(?,?);";
+
+        PreparedStatement linkTableStmt = c.prepareStatement(updateResponsibility);
+
+        linkTableStmt.setInt(1, job.getResponsibilityID());
+        linkTableStmt.setInt(2, id);
+
+        linkTableStmt.executeUpdate();
+
     }
 }
