@@ -11,9 +11,10 @@ import java.sql.Statement;
 import java.util.Date;
 import java.util.UUID;
 
-public class AuthDao
-{
+public class AuthDao {
     private DatabaseConnector databaseConnector = new DatabaseConnector();
+    private final int hours = 72;
+    private final int param = 3;
 
 
     public boolean validLogin(Login login) {
@@ -38,7 +39,7 @@ public class AuthDao
 
     public String generateToken(String username) throws SQLException {
         String token = UUID.randomUUID().toString();
-        Date expiry = DateUtils.addHours(new Date(), 72);
+        Date expiry = DateUtils.addHours(new Date(), hours);
 
         Connection c = databaseConnector.getConnection();
 
@@ -48,7 +49,7 @@ public class AuthDao
 
         st.setString(1, username);
         st.setString(2, token);
-        st.setTimestamp(3, new java.sql.Timestamp(expiry.getTime()));
+        st.setTimestamp(param, new java.sql.Timestamp(expiry.getTime()));
 
         st.executeUpdate();
 

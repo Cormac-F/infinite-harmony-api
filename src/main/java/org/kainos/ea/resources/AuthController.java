@@ -22,7 +22,7 @@ public class AuthController {
     @POST
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login (Login login) {
+    public Response login(Login login) {
         try {
             return Response.ok(authService.login(login)).build();
         } catch (FailedToLoginException e) {

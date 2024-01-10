@@ -29,7 +29,7 @@ public class AuthServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-    Login login = new Login("username","password");
+    Login login = new Login("username", "password");
     @Test
     void loginShouldGenerateTokenWhenValidLoginGiven() throws SQLException, FailedToLoginException,
             FailedToGenerateTokenException {
@@ -53,5 +53,4 @@ public class AuthServiceTest {
         assertThrows(FailedToGenerateTokenException.class,
                 () -> authService.login(login));
     }
-
 }
