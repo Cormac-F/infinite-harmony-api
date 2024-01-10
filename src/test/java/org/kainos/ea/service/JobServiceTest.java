@@ -6,7 +6,6 @@ import org.kainos.ea.client.FailedToGetJobSpecException;
 import org.kainos.ea.client.JobSpecDoesNotExistException;
 import org.kainos.ea.cli.Job;
 import org.kainos.ea.db.JobDao;
-import org.kainos.ea.db.DatabaseConnector;
 import org.kainos.ea.api.JobService;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +14,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.Mock;
 
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -28,13 +26,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(MockitoExtension.class)
 public class JobServiceTest {
     private JobDao jobDao = Mockito.mock(JobDao.class);
-    @Mock
-    DatabaseConnector databaseConnector = Mockito.mock(DatabaseConnector.class);
-
     private JobService jobService = new JobService(jobDao);
-
-    Job testJob = new Job(1, "TestJob", "Band", "Capability");
-    static final int ID = 1;
+    Job testJob = new Job(1, "TestJob", 3, 2, "job spec",
+        "link", "capability", "band");
 
 
     @BeforeEach
