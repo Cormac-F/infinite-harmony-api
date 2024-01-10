@@ -38,7 +38,7 @@ public class AuthDao
 
     public String generateToken(String username) throws SQLException {
         String token = UUID.randomUUID().toString();
-        Date expiry = DateUtils.addHours(new Date(), 8);
+        Date expiry = DateUtils.addHours(new Date(), 72);
 
         Connection c = databaseConnector.getConnection();
 
