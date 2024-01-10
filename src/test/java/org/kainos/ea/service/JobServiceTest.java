@@ -28,13 +28,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(MockitoExtension.class)
 public class JobServiceTest {
     private JobDao jobDao = Mockito.mock(JobDao.class);
-    @Mock
-    DatabaseConnector databaseConnector = Mockito.mock(DatabaseConnector.class);
-
     private JobService jobService = new JobService(jobDao);
-
-    Job testJob = new Job(1, "TestJob", "Band", "Capability");
-    static final int ID = 1;
+    Job testJob = new Job(1, "TestJob", 3, 2, "job spec",
+        "link", "capability", "band");
 
 
     @BeforeEach
