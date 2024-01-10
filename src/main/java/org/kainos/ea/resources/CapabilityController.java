@@ -1,14 +1,12 @@
 package org.kainos.ea.resources;
 
 import io.swagger.annotations.Api;
+import org.checkerframework.checker.units.qual.C;
 import org.kainos.ea.api.CapabilityService;
 import org.kainos.ea.cli.Capability;
 import org.kainos.ea.cli.CapabilityRequest;
-import org.kainos.ea.client.FailedToUpdateCapabilityException;
-import org.kainos.ea.client.FailedToGetCapabilityException;
-import org.kainos.ea.client.FailedToGetCapabilitiesException;
-import org.kainos.ea.client.InvalidCapabilityException;
-import org.kainos.ea.client.CapabilityDoesNotExistException;
+import org.kainos.ea.client.*;
+import org.kainos.ea.db.CapabilityDao;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -22,7 +20,9 @@ import javax.ws.rs.core.Response;
 @Api("Job Role API")
 @Path("/api")
 public class CapabilityController {
-    private CapabilityService capabilityService = new CapabilityService();
+    private CapabilityDao capabilityDao = new CapabilityDao();
+    private CapabilityValidator capabilityValidator = new CapabilityValidator();
+    private CapabilityService capabilityService = new CapabilityService(capabilityDao, capabilityValidator);
 
     @GET
     @Path("/capability")

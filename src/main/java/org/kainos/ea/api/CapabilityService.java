@@ -16,8 +16,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class CapabilityService {
-    private CapabilityDao capabilityDao = new CapabilityDao();
-    private CapabilityValidator capabilityValidator = new CapabilityValidator();
+    private CapabilityDao capabilityDao;
+    private CapabilityValidator capabilityValidator;
+
+    public CapabilityService(CapabilityDao capabilityDao, CapabilityValidator  capabilityValidator) {
+        this.capabilityDao = capabilityDao;
+        this.capabilityValidator = capabilityValidator;
+    }
 
     public List<Capability> getAllCapabilities() throws FailedToGetCapabilitiesException {
         List<Capability> capabilityList;

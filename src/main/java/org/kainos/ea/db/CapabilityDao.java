@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CapabilityDao {
-    private static Connection conn;
     private DatabaseConnector databaseConnector = new DatabaseConnector();
+
 
     public List<Capability> getAllCapabilities() throws SQLException {
         Connection c = databaseConnector.getConnection();
