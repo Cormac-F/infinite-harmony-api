@@ -996,5 +996,10 @@ INSERT INTO Responsibility_JobRole (responsibilityID, roleID) VALUES
 	 (38,1704),
 	 (40,1704);
 
+INSERT INTO Role(RoleID, Name) VALUES
+(1, "Admin"),
+(2, "Employee");
 
-
+INSERT INTO User(Username, Password, RoleID) VALUES 
+("admin@kainos.com","Password123!",1),
+("hremp@kainos.com","TestPass!37", 2);

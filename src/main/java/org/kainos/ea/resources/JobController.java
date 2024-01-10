@@ -6,6 +6,16 @@ import org.kainos.ea.cli.JobRequest;
 import org.kainos.ea.client.*;
 
 import javax.ws.rs.*;
+import org.kainos.ea.client.FailedToGetAllJobsException;
+import org.kainos.ea.client.FailedToGetJobSpecException;
+import org.kainos.ea.client.JobSpecDoesNotExistException;
+import org.kainos.ea.db.DatabaseConnector;
+import org.kainos.ea.db.JobDao;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -13,7 +23,22 @@ import javax.ws.rs.core.Response;
 @Api("Job Role API")
 @Path("/api")
 public class JobController {
-    private JobService jobService = new JobService();
+    DatabaseConnector databaseConnector = new DatabaseConnector();
+    JobDao jobDao = new JobDao(databaseConnector);
+    private JobService jobService = new JobService(jobDao);
+
+    @GET
+    @Path("/job-roles")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllJobs() {
+        try {
+            return Response.ok(jobService.getAllJobs()).build();
+        } catch (FailedToGetAllJobsException e) {
+            System.err.println(e.getMessage());
+
+            return Response.serverError().build();
+        }
+    }
 
     @GET
     @Path("/job-specification/{id}")
@@ -33,14 +58,6 @@ public class JobController {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
-    @GET
-    @Path("/job-roles")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllJobs() {
-        try {
-            return Response.ok(jobService.getAllJobs()).build();
-        } catch (FailedToGetAllJobsException e) {
-            System.err.println(e.getMessage());
 
             return Response.serverError().build();
         }
