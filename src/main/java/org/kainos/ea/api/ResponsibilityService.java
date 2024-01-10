@@ -9,16 +9,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ResponsibilityService {
+    private ResponsibilityDao responsibilityDao;
 
-    private ResponsibilityDao responsibilityDao = new ResponsibilityDao();
+    public ResponsibilityService(ResponsibilityDao responsibilityDao) {
+        this.responsibilityDao = responsibilityDao;
+    }
 
-    public List<Responsibility> getRoleResponsibilityById(int id) throws FailedToGetRoleResponsibilityException,
+    public List<Responsibility> getRoleResponsibilityByRoleId(int id) throws FailedToGetRoleResponsibilityException,
             RoleResponsibilityDoesNotExistException {
         List<Responsibility> responsibilitiesList = null;
         try {
-            responsibilitiesList = responsibilityDao.getRoleResponsibilityById(id);
+            responsibilitiesList = responsibilityDao.getRoleResponsibilityByRoleId(id);
 
-            if (responsibilitiesList.size() == 0) {
+            if (responsibilitiesList.isEmpty()) {
                 throw new RoleResponsibilityDoesNotExistException();
             }
 

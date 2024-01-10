@@ -3,7 +3,7 @@ package org.kainos.ea.cli;
 public class Responsibility {
     private String responsibilityName;
 
-    public Responsibility() {
+    public Responsibility(String responsibilityName) {
         this.responsibilityName = responsibilityName;
     }
 
