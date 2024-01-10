@@ -24,7 +24,7 @@ import javax.ws.rs.core.Response;
 @Path("/api")
 public class JobController {
     DatabaseConnector databaseConnector = new DatabaseConnector();
-    JobDao jobDao = new JobDao();
+    JobDao jobDao = new JobDao(databaseConnector);
     private JobService jobService = new JobService(jobDao);
 
     @GET
@@ -67,10 +67,14 @@ public class JobController {
             jobService.updateJob(id, job);
 
             return Response.ok().build();
-        } catch (InvalidJobException | JobDoesNotExistException e) {
+        } catch (InvalidJobException e) {
             System.err.println(e.getMessage());
 
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        } catch (JobDoesNotExistException e) {
+            System.err.println(e.getMessage());
+
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         } catch (FailedToUpdateJobException e) {
             System.err.println(e.getMessage());
 

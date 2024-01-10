@@ -16,6 +16,9 @@ public class JobDao {
     private static Connection conn;
     private DatabaseConnector databaseConnector;
 
+    public JobDao(DatabaseConnector databaseConnector) {
+    }
+
 
     public List<Job> getAllJobs() throws SQLException {
         Connection c = databaseConnector.getConnection();
