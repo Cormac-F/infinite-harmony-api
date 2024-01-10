@@ -106,6 +106,14 @@ CREATE TABLE Token(
 
 );
 
+CREATE TABLE Responsibility_JobRole (
+responsibilityID int,
+roleID int,
+
+FOREIGN KEY (roleID) REFERENCES JobRole(roleID),
+FOREIGN KEY (responsibilityID) REFERENCES Responsibility(responsibilityID)
+);
+
 
 INSERT INTO TeamLead
 (`leadID`, `leadForename`, `leadSurname`, `leadMessage`)
@@ -946,6 +954,47 @@ VALUES
 (76,'Must be able to exhibit the following; Delivery, Business Development & Account Management, Team, Governance, Professional Development and Growth.',1104),
 (77,'Advising on which methodology or hybrid approach is best suited for the specific client needs. Improve Kainos reputation by building strong client relationships',1102);
 
+INSERT INTO Responsibility_JobRole (responsibilityID, roleID) VALUES
+	 (77,1102),
+	 (76,1104),
+	 (74,1105),
+	 (75,1105),
+	 (72,1201),
+	 (73,1201),
+	 (70,1202),
+	 (71,1202),
+	 (68,1203),
+	 (69,1203),
+	 (54,1301),
+	 (55,1301),
+	 (65,1302),
+	 (66,1302),
+	 (67,1302),
+	 (51,1303),
+	 (52,1303),
+	 (53,1303),
+	 (62,1304),
+	 (63,1304),
+	 (64,1304),
+	 (60,1306),
+	 (61,1306),
+	 (58,1308),
+	 (59,1308),
+	 (56,1401),
+	 (57,1401),
+	 (44,1701),
+	 (45,1701),
+	 (46,1701),
+	 (49,1701),
+	 (50,1701),
+	 (47,1702),
+	 (48,1702),
+	 (39,1703),
+	 (41,1703),
+	 (42,1703),
+	 (43,1703),
+	 (38,1704),
+	 (40,1704);
 
 INSERT INTO Role(RoleID, Name) VALUES
 (1, "Admin"),

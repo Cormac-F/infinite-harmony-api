@@ -2,6 +2,10 @@ package org.kainos.ea.resources;
 
 import io.swagger.annotations.Api;
 import org.kainos.ea.api.JobService;
+import org.kainos.ea.cli.JobRequest;
+import org.kainos.ea.client.*;
+
+import javax.ws.rs.*;
 import org.kainos.ea.client.FailedToGetAllJobsException;
 import org.kainos.ea.client.FailedToGetJobSpecException;
 import org.kainos.ea.client.JobSpecDoesNotExistException;
@@ -55,5 +59,26 @@ public class JobController {
         }
     }
 
+    @PUT
+    @Path("/edit-job-role/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateJob(@PathParam("id") int id, JobRequest job) {
+        try {
+            jobService.updateJob(id, job);
 
+            return Response.ok().build();
+        } catch (InvalidJobException e) {
+            System.err.println(e.getMessage());
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        } catch (JobDoesNotExistException e) {
+            System.err.println(e.getMessage());
+
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        } catch (FailedToUpdateJobException e) {
+            System.err.println(e.getMessage());
+
+            return Response.serverError().build();
+        }
+    }
 }
