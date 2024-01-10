@@ -46,7 +46,7 @@ public class BandController {
         } catch (BandDoesNotExistException e) {
             System.err.println(e.getMessage());
 
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
         } catch (FailedToGetBandException e) {
             System.err.println(e.getMessage());
 

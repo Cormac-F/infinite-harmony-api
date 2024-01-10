@@ -37,24 +37,25 @@ public class ResponsibilityServiceTest {
                 Mockito.mock(Responsibility.class),
                 Mockito.mock(Responsibility.class)
         );
-        Mockito.when(responsibilityDao.getRoleResponsibilityById(1)).thenReturn(result);
-        assertEquals(result, responsibilityService.getRoleResponsibilityById(1));
+        Mockito.when(responsibilityDao.getRoleResponsibilityByRoleId(1)).thenReturn(result);
+        assertEquals(result, responsibilityService.getRoleResponsibilityByRoleId(1));
     }
 
     @Test
     void getRoleResponsibilityByIDThrowsRoleDoesNotExistExceptionWhenIDis0() throws
             FailedToGetRoleResponsibilityException, RoleResponsibilityDoesNotExistException, SQLException {
-        Mockito.when(responsibilityDao.getRoleResponsibilityById(0)).thenReturn(null);
+        List<Responsibility> result = Arrays.asList();
+        Mockito.when(responsibilityDao.getRoleResponsibilityByRoleId(0)).thenReturn(result);
         assertThrows(RoleResponsibilityDoesNotExistException.class,
-                () -> responsibilityService.getRoleResponsibilityById(0));
+                () -> responsibilityService.getRoleResponsibilityByRoleId(0));
     }
 
     @Test
     void getRoleResponsibilityByIDThrowsFailedToGetRoleResponsibilityWhenDAOThrowsSqlExcept()
         throws SQLException, FailedToGetRoleResponsibilityException, RoleResponsibilityDoesNotExistException {
-        Mockito.when(responsibilityDao.getRoleResponsibilityById(1)).thenThrow(SQLException.class);
+        Mockito.when(responsibilityDao.getRoleResponsibilityByRoleId(1)).thenThrow(SQLException.class);
         assertThrows(FailedToGetRoleResponsibilityException.class,
-                () -> responsibilityService.getRoleResponsibilityById(1));
+                () -> responsibilityService.getRoleResponsibilityByRoleId(1));
     }
 
 

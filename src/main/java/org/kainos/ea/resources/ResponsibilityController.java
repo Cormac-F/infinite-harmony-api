@@ -26,7 +26,7 @@ public class ResponsibilityController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getRoleResponsibilityById(@PathParam("id") int id) {
         try {
-            return Response.ok(responsibilityService.getRoleResponsibilityById(id)).build();
+            return Response.ok(responsibilityService.getRoleResponsibilityByRoleId(id)).build();
 
         } catch (FailedToGetRoleResponsibilityException e) {
             System.err.println(e.getMessage());

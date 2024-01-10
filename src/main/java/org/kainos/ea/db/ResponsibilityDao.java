@@ -15,7 +15,7 @@ public class ResponsibilityDao {
 
     private DatabaseConnector databaseConnector = new DatabaseConnector();
 
-    public List<Responsibility> getRoleResponsibilityById(int id) throws SQLException {
+    public List<Responsibility> getRoleResponsibilityByRoleId(int id) throws SQLException {
 
         Connection c = databaseConnector.getConnection();
 

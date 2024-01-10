@@ -34,7 +34,7 @@ public class BandService {
     }
 
     public Band getBandByID(int id) throws FailedToGetBandException, BandDoesNotExistException {
-        Band band = new Band();
+        Band band = null;
         try {
             band = bandDao.getBandByID(id);
 

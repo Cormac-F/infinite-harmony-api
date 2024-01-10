@@ -15,13 +15,13 @@ public class ResponsibilityService {
         this.responsibilityDao = responsibilityDao;
     }
 
-    public List<Responsibility> getRoleResponsibilityById(int id) throws FailedToGetRoleResponsibilityException,
+    public List<Responsibility> getRoleResponsibilityByRoleId(int id) throws FailedToGetRoleResponsibilityException,
             RoleResponsibilityDoesNotExistException {
         List<Responsibility> responsibilitiesList = null;
         try {
-            responsibilitiesList = responsibilityDao.getRoleResponsibilityById(id);
+            responsibilitiesList = responsibilityDao.getRoleResponsibilityByRoleId(id);
 
-            if (responsibilitiesList == null) {
+            if (responsibilitiesList.isEmpty()) {
                 throw new RoleResponsibilityDoesNotExistException();
             }
 
