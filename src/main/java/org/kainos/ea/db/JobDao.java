@@ -65,9 +65,13 @@ public class JobDao {
         ResultSet rs = null;
 
 
-        String query = "SELECT roleID, roleName, Band.bandID, JobFamily.familyID, "
-                + "Band.bandName, JobRole.specSummary, JobRole.sharepointLink, Band.bandName, "
-                + "Capability.capabilityName FROM JobRole WHERE roleID = ?";
+        String query = "SELECT roleID, roleName, Band.bandID, JobFamily.familyID, Band.bandName, "
+                + "JobRole.specSummary, JobRole.sharepointLink, Capability.capabilityName FROM JobRole\n"
+                + "INNER JOIN JobFamily ON JobRole.familyID = JobFamily.familyID\n"
+                + "INNER JOIN Band ON JobRole.bandID = Band.bandID\n"
+                + "INNER JOIN Capability ON JobFamily.capabilityID = Capability.capabilityID\n"
+                + "WHERE roleID = ?";
+
         ps = c.prepareStatement(query);
         ps.setInt(1, id);
 
