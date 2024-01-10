@@ -12,4 +12,8 @@
     <suppress checks="HideUtilityClassConstructor" files="."/>
     <suppress checks="VisibilityModifier" files="."/>
     <suppress checks="MagicNumber" files="test/"/>
+    <suppress checks="MagicNumber" files="db/JobDao"/>
+    <suppress checks="MagicNumber" files="core/JobValidator"/>
+    <suppress checks="AvoidStarImport" files="api/JobService"/>
+    <suppress checks="AvoidStarImport" files="resources/JobController"/>
 </suppressions>

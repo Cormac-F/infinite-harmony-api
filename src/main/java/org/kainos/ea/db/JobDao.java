@@ -80,7 +80,7 @@ public class JobDao {
 
         String updateStatement = "UPDATE JobRole\n "
                 + "SET roleName = ?,\n "
-                +"bandID = ?,\n "
+                + "bandID = ?,\n "
                 + "familyID = ?,\n "
                 + "specSummary = ?,\n "
                 + "sharepointLink = ?\n "
