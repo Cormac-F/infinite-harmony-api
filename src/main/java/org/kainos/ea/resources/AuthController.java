@@ -28,7 +28,7 @@ public class AuthController {
         } catch (FailedToLoginException e) {
             System.err.println(e.getMessage());
 
-            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+            return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
         } catch (FailedToGenerateTokenException e) {
             System.err.println(e.getMessage());
 
