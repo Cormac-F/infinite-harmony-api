@@ -1,6 +1,5 @@
 package org.kainos.ea.service;
 
-
 import org.kainos.ea.client.FailedToGetAllJobsException;
 import org.kainos.ea.client.FailedToGetJobSpecException;
 import org.kainos.ea.client.JobSpecDoesNotExistException;
@@ -30,12 +29,10 @@ public class JobServiceTest {
     Job testJob = new Job(1, "TestJob", 3, 2, "job spec",
         "link", "capability", "band");
 
-
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     void jobServiceShouldReturnListWhenCalled() throws FailedToGetAllJobsException, SQLException {
@@ -67,9 +64,5 @@ public class JobServiceTest {
         assertThrows(JobSpecDoesNotExistException.class,
                 () -> jobService.getJobSpecById(0));
     }
-
-
-
-
 }
 

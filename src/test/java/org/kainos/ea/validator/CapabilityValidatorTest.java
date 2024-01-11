@@ -1,4 +1,4 @@
-package com.kainos.ea.Validator;
+package org.kainos.ea.validator;
 
 import org.junit.jupiter.api.Test;
 import org.kainos.ea.cli.CapabilityRequest;

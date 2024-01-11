@@ -12,14 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CapabilityDao {
-    private static Connection conn;
     private DatabaseConnector databaseConnector = new DatabaseConnector();
+
 
     public List<Capability> getAllCapabilities() throws SQLException {
         Connection c = databaseConnector.getConnection();
         Statement st = c.createStatement();
 
-        ResultSet rs = st.executeQuery("SELECT capabilityID, capabilityName FROM Capability");
+        ResultSet rs = st.executeQuery("SELECT capabilityID, capabilityName \n"
+                + "FROM Capability\n"
+                + "ORDER BY capabilityName;");
+
         List<Capability> capabilityList = new ArrayList<>();
 
         while (rs.next()) {

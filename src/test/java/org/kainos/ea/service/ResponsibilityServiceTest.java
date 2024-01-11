@@ -5,7 +5,6 @@ import org.kainos.ea.cli.Responsibility;
 import org.kainos.ea.client.FailedToGetRoleResponsibilityException;
 import org.kainos.ea.client.RoleResponsibilityDoesNotExistException;
 import org.kainos.ea.db.ResponsibilityDao;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,6 +29,7 @@ public class ResponsibilityServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
+
     @Test
     void getRoleResponsibilityByIdReturnsResponsibilityWhenIDIs1() throws FailedToGetRoleResponsibilityException,
             RoleResponsibilityDoesNotExistException, SQLException {
@@ -57,8 +57,4 @@ public class ResponsibilityServiceTest {
         assertThrows(FailedToGetRoleResponsibilityException.class,
                 () -> responsibilityService.getRoleResponsibilityByRoleId(1));
     }
-
-
-
-
 }
