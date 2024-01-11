@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.0//EN"
+        "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+
+<suppressions>
+    <suppress checks="Javadoc" files="."/>
+    <suppress checks="TodoComment" files="."/>
+    <suppress checks="DesignForExtension" files="."/>
+    <suppress checks="FinalParameters" files="."/>
+    <suppress checks="HideUtilityClassConstructor" files="."/>
+    <suppress checks="VisibilityModifier" files="."/>
+    <suppress checks="MagicNumber" files="test/"/>
+    <suppress checks="MagicNumber" files="db/JobDao"/>
+    <suppress checks="AvoidStarImport" files="resources/JobController"/>
+    <suppress checks="ParameterNumber" files="cli/Job"/>
+</suppressions>
