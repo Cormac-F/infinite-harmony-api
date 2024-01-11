@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dropwizard.version>2.0.23</dropwizard.version>
-        <mainClass>org.kainos.ea.ih-java-apiApplication</mainClass>
+        <mainClass>org.kainos.ea.DropwizardApplication</mainClass>
     </properties>
 
     <dependencyManagement>
