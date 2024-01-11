@@ -3,12 +3,47 @@ package org.kainos.ea.cli;
 public class Job {
     private int roleID;
     private String roleName;
+    private int bandID;
+    private int familyID;
+    private String specSummary;
+    private String sharepointLink;
     private String capabilityName;
+    private String bandName;
 
-    public Job(int roleID, String roleName, String capabilityName) {
+    public Job(int roleID, String roleName, int bandID, int familyID,
+               String specSummary, String sharepointLink, String capabilityName, String bandName) {
         this.roleID = roleID;
         this.roleName = roleName;
+        this.bandID = bandID;
+        this.familyID = familyID;
+        this.specSummary = specSummary;
+        this.sharepointLink = sharepointLink;
         this.capabilityName = capabilityName;
+        this.bandName = bandName;
+    }
+
+    public String getBandName() {
+        return bandName;
+    }
+
+    public void setBandName(String bandName) {
+        this.bandName = bandName;
+    }
+
+    public int getBandID() {
+        return bandID;
+    }
+
+    public void setBandID(int bandID) {
+        this.bandID = bandID;
+    }
+
+    public int getFamilyID() {
+        return familyID;
+    }
+
+    public void setFamilyID(int familyID) {
+        this.familyID = familyID;
     }
 
     public String getCapabilityName() {
@@ -34,17 +69,6 @@ public class Job {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
-    }
-
-
-    private String specSummary;
-    private String sharepointLink;
-
-    public Job(int roleID, String roleName, String specSummary, String sharepointLink) {
-        this.roleID = roleID;
-        this.roleName = roleName;
-        this.specSummary = specSummary;
-        this.sharepointLink = sharepointLink;
     }
 
     public String getSpecSummary() {

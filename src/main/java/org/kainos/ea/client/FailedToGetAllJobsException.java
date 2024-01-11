@@ -1,6 +1,6 @@
 package org.kainos.ea.client;
 
-public class FailedToGetAllJobsException extends Exception {
+public class FailedToGetAllJobsException extends Throwable {
 
     @Override
     public String getMessage() {

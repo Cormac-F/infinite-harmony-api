@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import org.kainos.ea.api.ResponsibilityService;
 import org.kainos.ea.client.FailedToGetRoleResponsibilityException;
 import org.kainos.ea.client.RoleResponsibilityDoesNotExistException;
+import org.kainos.ea.db.ResponsibilityDao;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,14 +18,15 @@ import javax.ws.rs.core.Response;
 @Path("/api")
 public class ResponsibilityController {
 
-    private ResponsibilityService responsibilityService = new ResponsibilityService();
+    private ResponsibilityDao responsibilityDao = new ResponsibilityDao();
+    private ResponsibilityService responsibilityService = new ResponsibilityService(responsibilityDao);
 
     @GET
     @Path("/responsibilities-per-role/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getRoleResponsibilityById(@PathParam("id") int id) {
         try {
-            return Response.ok(responsibilityService.getRoleResponsibilityById(id)).build();
+            return Response.ok(responsibilityService.getRoleResponsibilityByRoleId(id)).build();
 
         } catch (FailedToGetRoleResponsibilityException e) {
             System.err.println(e.getMessage());
