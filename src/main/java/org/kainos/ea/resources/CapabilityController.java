@@ -1,18 +1,13 @@
 package org.kainos.ea.resources;
 
 import io.swagger.annotations.Api;
-import org.checkerframework.checker.units.qual.C;
 import org.kainos.ea.api.CapabilityService;
 import org.kainos.ea.cli.Capability;
 import org.kainos.ea.cli.CapabilityRequest;
 import org.kainos.ea.client.*;
 import org.kainos.ea.db.CapabilityDao;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -46,7 +41,7 @@ public class CapabilityController {
                 if (capability == null) {
                     return Response.status(Response.Status.NOT_FOUND).build();
                 }
-            return Response.ok().build();
+            return Response.ok().entity(capability).build();
         } catch (FailedToGetCapabilityException | CapabilityDoesNotExistException e) {
             System.err.println(e.getMessage());
 
