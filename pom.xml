@@ -11,13 +11,13 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Dropwizard</name>
+    <name>ih-java-api</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dropwizard.version>2.0.23</dropwizard.version>
-        <mainClass>org.kainos.ea.DropwizardApplication</mainClass>
+        <mainClass>org.kainos.ea.ih-java-apiApplication</mainClass>
     </properties>
 
     <dependencyManagement>
