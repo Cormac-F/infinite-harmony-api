@@ -17,7 +17,7 @@ public class AIJobValidatorTest {
     }
 
     @Test
-    public void testIsValidJob_InvalidRoleName() {
+    public void testIsValidJobInvalidRoleName() {
         // Arrange
         String roleName = "This is a very long role name that exceeds the maximum length allowed";
 
@@ -29,7 +29,7 @@ public class AIJobValidatorTest {
     }
 
     @Test
-    public void testIsValidJob_InvalidBandID() {
+    public void testIsValidJobInvalidBandID() {
         // Arrange
         int bandID = 0;
 
@@ -41,7 +41,7 @@ public class AIJobValidatorTest {
     }
 
     @Test
-    public void testIsValidJob_InvalidFamilyID() {
+    public void testIsValidJobInvalidFamilyID() {
         // Arrange
         int familyID = 0;
 
@@ -53,7 +53,7 @@ public class AIJobValidatorTest {
     }
 
     @Test
-    public void testIsValidJob_InvalidSpecSummary() {
+    public void testIsValidJobInvalidSpecSummary() {
         // Arrange
         String specSummary = "This is a very long spec summary that exceeds the maximum length allowed. This is a very long spec summary that exceeds the maximum length allowed. This is a very long spec summary that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed.This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed.This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed.This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed.";
 
@@ -65,7 +65,7 @@ public class AIJobValidatorTest {
     }
 
     @Test
-    public void testIsValidJob_InvalidSharepointLink() {
+    public void testIsValidJobInvalidSharepointLink() {
         // Arrange
         String sharepointLink = "This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed.This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed.This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed.This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed. This is a very long sharepoint link that exceeds the maximum length allowed.";
 
@@ -77,7 +77,7 @@ public class AIJobValidatorTest {
     }
 
     @Test
-    public void testIsValidJob_InvalidResponsibilityID() {
+    public void testIsValidJobInvalidResponsibilityID() {
         // Arrange
         int responsibilityID = 0;
 
